@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_material_test_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div class="text-center">
+                            <h2>DSC Material Product Test Report</h2>
+                            <h3>Báo cáo thử nghiệm sản phẩm vật liệu</h3>
+                        </div>
+
+                        <div class="row mt-4">
+                            <div class="col-6">
+                                <strong>Report No.:</strong> <span t-field="o.name"/><br/>
+                                <strong>Factory:</strong> <span t-field="o.factory"/><br/>
+                                <strong>Material Type:</strong> <span t-field="o.material_type"/><br/>
+                                <strong>Material Description:</strong> <span t-field="o.material_description"/><br/>
+                            </div>
+                            <div class="col-6">
+                                <strong>Color:</strong> <span t-field="o.color"/><br/>
+                                <strong>P.O. Number:</strong> <span t-field="o.po_number"/><br/>
+                                <strong>Quantity:</strong> <span t-field="o.quantity"/><br/>
+                                <strong>Date Tested:</strong> <span t-field="o.date_tested"/><br/>
+                                <strong>Tester:</strong> <span t-field="o.tester"/><br/>
+                            </div>
+                        </div>
+
+                        <h4 class="mt-4">Test Results</h4>
+                        <table class="table table-sm table-bordered mt-2">
+                            <thead>
+                                <tr class="bg-light">
+                                    <th>Test Item</th>
+                                    <th>Method</th>
+                                    <th>Unit</th>
+                                    <th>Spec</th>
+                                    <th>Result 1</th>
+                                    <th>Result 2</th>
+                                    <th>Result 3</th>
+                                    <th>Average</th>
+                                    <th>Pass/Fail</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Hardness -->
+                                <tr>
+                                    <td>Hardness (ASKER-C)</td>
+                                    <td>NIKE G45</td>
+                                    <td>ASKER-C</td>
+                                    <td><span t-field="o.hardness_spec"/></td>
+                                    <td><span t-field="o.hardness_asker_c"/></td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td><span t-field="o.hardness_average"/></td>
+                                    <td><span t-field="o.hardness_result"/></td>
+                                </tr>
+
+                                <!-- Tensile Strength -->
+                                <tr>
+                                    <td>Tensile Strength</td>
+                                    <td>NIKE G76</td>
+                                    <td>Kg/cm²</td>
+                                    <td><span t-field="o.tensile_spec"/></td>
+                                    <td><span t-field="o.tensile_strength_1"/></td>
+                                    <td><span t-field="o.tensile_strength_2"/></td>
+                                    <td><span t-field="o.tensile_strength_3"/></td>
+                                    <td><span t-field="o.tensile_strength_average"/></td>
+                                    <td><span t-field="o.tensile_result"/></td>
+                                </tr>
+
+                                <!-- Elongation -->
+                                <tr>
+                                    <td>Elongation Ratio</td>
+                                    <td>NIKE G76</td>
+                                    <td>%</td>
+                                    <td><span t-field="o.elongation_spec"/></td>
+                                    <td><span t-field="o.elongation_1"/></td>
+                                    <td><span t-field="o.elongation_2"/></td>
+                                    <td><span t-field="o.elongation_3"/></td>
+                                    <td><span t-field="o.elongation_average"/></td>
+                                    <td><span t-field="o.elongation_result"/></td>
+                                </tr>
+
+                                <!-- Tear Strength -->
+                                <tr>
+                                    <td>Tear Strength DIE-C</td>
+                                    <td>ASTM D624</td>
+                                    <td>Kg/cm</td>
+                                    <td><span t-field="o.tear_spec"/></td>
+                                    <td><span t-field="o.tear_strength_1"/></td>
+                                    <td><span t-field="o.tear_strength_2"/></td>
+                                    <td><span t-field="o.tear_strength_3"/></td>
+                                    <td><span t-field="o.tear_strength_average"/></td>
+                                    <td><span t-field="o.tear_result"/></td>
+                                </tr>
+
+                                <!-- Resiliency -->
+                                <tr>
+                                    <td>Resiliency</td>
+                                    <td>ASTM D2632</td>
+                                    <td>%</td>
+                                    <td><span t-field="o.resiliency_spec"/></td>
+                                    <td><span t-field="o.resiliency_1"/></td>
+                                    <td><span t-field="o.resiliency_2"/></td>
+                                    <td><span t-field="o.resiliency_3"/></td>
+                                    <td><span t-field="o.resiliency_average"/></td>
+                                    <td><span t-field="o.resiliency_result"/></td>
+                                </tr>
+
+                                <!-- Specific Gravity -->
+                                <tr>
+                                    <td>Specific Gravity</td>
+                                    <td>NIKE G43</td>
+                                    <td>g/cm³</td>
+                                    <td><span t-field="o.specific_gravity_spec"/></td>
+                                    <td><span t-field="o.specific_gravity_1"/></td>
+                                    <td><span t-field="o.specific_gravity_2"/></td>
+                                    <td><span t-field="o.specific_gravity_3"/></td>
+                                    <td><span t-field="o.specific_gravity_average"/></td>
+                                    <td><span t-field="o.specific_gravity_result"/></td>
+                                </tr>
+
+                                <!-- Shrinkage -->
+                                <tr>
+                                    <td>Shrinkage</td>
+                                    <td>NIKE G1</td>
+                                    <td>%</td>
+                                    <td><span t-field="o.shrinkage_spec"/></td>
+                                    <td><span t-field="o.shrinkage_1"/></td>
+                                    <td><span t-field="o.shrinkage_2"/></td>
+                                    <td><span t-field="o.shrinkage_3"/></td>
+                                    <td><span t-field="o.shrinkage_average"/></td>
+                                    <td><span t-field="o.shrinkage_result"/></td>
+                                </tr>
+
+                                <!-- Compression Set -->
+                                <tr>
+                                    <td>Compression Set</td>
+                                    <td>NIKE G16</td>
+                                    <td>%</td>
+                                    <td><span t-field="o.compression_spec"/></td>
+                                    <td><span t-field="o.compression_set_1"/></td>
+                                    <td><span t-field="o.compression_set_2"/></td>
+                                    <td><span t-field="o.compression_set_3"/></td>
+                                    <td><span t-field="o.compression_set_average"/></td>
+                                    <td><span t-field="o.compression_result"/></td>
+                                </tr>
+
+                                <!-- Split Tear -->
+                                <tr>
+                                    <td>Split Tear</td>
+                                    <td>NIKE G38</td>
+                                    <td>Kg/cm</td>
+                                    <td><span t-field="o.split_tear_spec"/></td>
+                                    <td><span t-field="o.split_tear_1"/></td>
+                                    <td><span t-field="o.split_tear_2"/></td>
+                                    <td><span t-field="o.split_tear_3"/></td>
+                                    <td><span t-field="o.split_tear_average"/></td>
+                                    <td><span t-field="o.split_tear_result"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="mt-4">
+                            <strong>Comments:</strong><br/>
+                            <span t-field="o.comments"/>
+                        </div>
+
+                        <div class="row mt-5">
+                            <div class="col-4">
+                                <strong>Reviewer:</strong><br/>
+                                <span t-field="o.reviewer"/>
+                            </div>
+                            <div class="col-4">
+                                <strong>Production Manager:</strong><br/>
+                                <span t-field="o.production_manager"/>
+                            </div>
+                            <div class="col-4">
+                                <strong>Quality Control:</strong><br/>
+                                <span t-field="o.quality_control"/>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

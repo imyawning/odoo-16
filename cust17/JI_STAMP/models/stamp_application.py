@@ -501,26 +501,17 @@ class StampApplication(models.Model):
             }
 
     def action_update_history(self):
-        """更新簽核歷程並同步 EFGP 狀態"""
+        """只更新簽核歷程，不改變狀態"""
         from zeep import Client
         import xml.etree.ElementTree as ET
         import re
 
         serial_no = self.efgp_serial_no
 
-        # 狀態對應表
         STATE_DISPLAY = {
             'closed.completed': '已簽核',
             'open.running.not_performed': '審核中',
             'closed.terminated': '已終止',
-        }
-
-        # EFGP 狀態 -> Odoo 狀態對應
-        EFGP_TO_ODOO_STATE = {
-            'closed.completed': 'approved',  # 已完成 -> 已核准
-            'open.running.not_performed': 'submitted',  # 審核中 -> 已送簽
-            'open.running.performed': 'submitted',  # 執行中 -> 已送簽
-            'closed.terminated': 'cancelled',  # 已終止 -> 已取消
         }
 
         if not serial_no:
@@ -531,19 +522,11 @@ class StampApplication(models.Model):
         client = Client(wsdl=wsdl)
 
         try:
-            # 使用 fetchFullProcInstanceWithSerialNo 獲取完整資訊
             result_xml = client.service.fetchFullProcInstanceWithSerialNo(
                 pProcessInstanceSerialNo=serial_no
             )
             root = ET.fromstring(result_xml)
 
-            # 1. 提取流程整體狀態
-            process_state = root.findtext('.//state', '').strip()
-            process_name = root.findtext('.//processName', '').strip()
-
-            _logger.info(f'EFGP 流程狀態: {process_state}, 流程名稱: {process_name}')
-
-            # 2. 更新簽核歷程
             history = []
 
             def clean(val):
@@ -567,43 +550,16 @@ class StampApplication(models.Model):
                         'comment': comment,
                     })
 
-            # 清空並重建歷程記錄
+            # 只更新歷程，不更新狀態
             self.history_ids = [(5, 0, 0)]
             for row in history:
                 self.history_ids = [(0, 0, row)]
 
-            # 3. 根據 EFGP 狀態更新 Odoo 狀態
-            new_state = EFGP_TO_ODOO_STATE.get(process_state, self.state)
-
-            if new_state != self.state:
-                old_state = self.state
-                self.write({'state': new_state})
-
-                # 記錄狀態變更
-                self.message_post(
-                    body=_('🔄 已從 EFGP 同步狀態: %s -> %s\n流程狀態: %s\n流程名稱: %s\n歷程記錄數: %d') % (
-                        old_state, new_state, process_state, process_name, len(history)
-                    )
-                )
-
-                message = f'✅ 已更新歷程 ({len(history)} 筆) 並同步狀態: {old_state} → {new_state}'
-            else:
-                message = f'✅ 已更新歷程 ({len(history)} 筆)，狀態保持: {self.state}'
-
-            _logger.info(f'更新歷程成功: {message}')
+            message = f'✅ 已更新簽核歷程 ({len(history)} 筆記錄)'
 
         except Exception as e:
-            error_msg = str(e)
-            _logger.error(f'更新歷程失敗: {error_msg}')
-
-            # 發生錯誤時清空歷程
             self.history_ids = [(5, 0, 0)]
-
-            self.message_post(
-                body=_('❌ 更新歷程失敗: %s') % error_msg
-            )
-
-            message = f'❌ 更新失敗: {error_msg}'
+            message = f'❌ 更新歷程失敗: {str(e)}'
 
         return {
             'type': 'ir.actions.client',
@@ -614,6 +570,95 @@ class StampApplication(models.Model):
                 'sticky': False,
             }
         }
+
+    def action_update_efgp_status(self):
+        """只更新 EFGP 狀態（保持原有功能）"""
+        for rec in self:
+            if not rec.efgp_serial_no:
+                return {
+                    'type': 'ir.actions.client',
+                    'tag': 'reload',
+                    'params': {
+                        'title': '更新 EFGP 狀態失敗',
+                        'message': '沒有 EFGP 序號，無法查詢狀態',
+                        'sticky': False,
+                    }
+                }
+
+            try:
+                from zeep import Client
+                import xml.etree.ElementTree as ET
+
+                wsdl = "http://192.168.3.229:8086/NaNaWeb/services/WorkflowService?wsdl"
+                client = Client(wsdl=wsdl)
+
+                # 使用 fetchProcInstanceWithSerialNo 查詢基本狀態
+                result_xml = client.service.fetchProcInstanceWithSerialNo(
+                    pProcessInstanceSerialNo=rec.efgp_serial_no
+                )
+
+                root = ET.fromstring(result_xml)
+
+                process_state = root.findtext('.//state', '').strip()
+                process_name = root.findtext('.//processName', '').strip()
+                start_time = root.findtext('.//startTime', '').strip()
+                end_time = root.findtext('.//endTime', '').strip()
+
+                # 狀態對應表
+                STATE_MAPPING = {
+                    'open.running.not_performed': 'submitted',
+                    'closed.completed': 'approved',
+                    'closed.terminated': 'cancelled',
+                    'open.running.performed': 'submitted',
+                }
+
+                new_state = STATE_MAPPING.get(process_state, rec.state)
+
+                if new_state != rec.state:
+                    old_state = rec.state
+                    rec.write({'state': new_state})
+
+                    rec.message_post(
+                        body=_(
+                            '🔄 EFGP 狀態已更新: %s -> %s\n流程狀態: %s\n流程名稱: %s\n開始時間: %s\n結束時間: %s') % (
+                                 old_state, new_state, process_state, process_name, start_time, end_time
+                             )
+                    )
+
+                    message = f'✅ 狀態已更新: {old_state} → {new_state}'
+                else:
+                    rec.message_post(
+                        body=_('ℹ️ EFGP 狀態查詢完成\n流程狀態: %s\n流程名稱: %s\n開始時間: %s\n結束時間: %s') % (
+                            process_state, process_name, start_time, end_time
+                        )
+                    )
+                    message = f'ℹ️ 狀態保持不變: {rec.state}'
+
+                return {
+                    'type': 'ir.actions.client',
+                    'tag': 'reload',
+                    'params': {
+                        'title': 'EFGP 狀態更新成功',
+                        'message': message,
+                        'sticky': False,
+                    }
+                }
+
+            except Exception as e:
+                error_msg = str(e)
+                rec.message_post(
+                    body=_('❌ EFGP 狀態查詢失敗: %s') % error_msg
+                )
+
+                return {
+                    'type': 'ir.actions.client',
+                    'tag': 'reload',
+                    'params': {
+                        'title': 'EFGP 狀態更新失敗',
+                        'message': f'查詢失敗: {error_msg}',
+                        'sticky': False,
+                    }
+                }
 
     def action_update_efgp_status(self):
         """更新EFGP狀態 - 查詢流程基本狀態並更新Odoo狀態"""

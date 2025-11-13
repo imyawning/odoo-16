@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <report
+        id="report_material_test"
+        string="Material Test Report"
+        model="dsc.material.test.report"
+        report_type="qweb-pdf"
+        name="dsc_material_test.report_material_test_document"
+        file="dsc_material_test.report_material_test_document"
+        print_report_name="'Material Test Report - %s' % (object.name)"
+    />
+</odoo>
