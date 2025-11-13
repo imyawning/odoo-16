@@ -1,0 +1,20 @@
+<odoo>
+    <record id="inherit_crm_property_form_view_inherit" model="ir.ui.view">
+        <field name="name">crm.lead.form</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='internal_notes']" position="before">
+                <page name="info_ithome" string="電動床資訊">
+                    <group>
+                        <group string="人員資訊">
+                            <field name="ithome_person"/>
+                            <field name="ithome_date"/>
+                            <field name="ithome_info"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

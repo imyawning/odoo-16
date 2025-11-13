@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_stamp_application_public,stamp.application.public,model_stamp_application,,1,0,0,0
+access_stamp_application_user,stamp.application.user,model_stamp_application,base.group_user,1,1,1,0
+access_stamp_application_manager,stamp.application.manager,model_stamp_application,base.group_system,1,1,1,1
+access_stamp_config_user,stamp.config.user,model_stamp_config,base.group_user,1,1,1,0
+access_stamp_config_manager,stamp.config.manager,model_stamp_config,base.group_system,1,1,1,1
+access_stamp_application_history,stamp.application.history,model_stamp_application_history,base.group_user,1,1,1,1

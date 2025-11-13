@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- 主選單 -->
+    <menuitem id="menu_ji_stamp_root"
+              name="用印申請"
+              sequence="10"/>
+
+    <!-- 用印申請選單 -->
+    <menuitem id="menu_stamp_application"
+              name="用印申請"
+              parent="menu_ji_stamp_root"
+              sequence="10"/>
+
+    <menuitem id="menu_stamp_application_list"
+              name="申請單管理"
+              parent="menu_stamp_application"
+              action="action_stamp_application"
+              sequence="10"/>
+
+    <!-- 設定選單 -->
+    <menuitem id="menu_stamp_config"
+              name="設定"
+              parent="menu_ji_stamp_root"
+              sequence="100"/>
+
+    <menuitem id="menu_stamp_config_settings"
+              name="用印申請設定"
+              parent="menu_stamp_config"
+              action="action_stamp_config"
+              sequence="10"/>
+</odoo> 

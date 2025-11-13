@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_asset_disposal_tree" model="ir.ui.view">
+            <field name="name">asset.disposal.tree</field>
+            <field name="model">asset.disposal</field>
+            <field name="arch" type="xml">
+                <tree string="資產報廢單">
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="applicant_id"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_asset_disposal_form" model="ir.ui.view">
+            <field name="name">asset.disposal.form</field>
+            <field name="model">asset.disposal</field>
+            <field name="arch" type="xml">
+                <form string="資產報廢單">
+                    <header>
+                        <button name="action_confirm" type="object" string="確認"
+                                class="btn-primary"
+                                invisible="state != 'draft'"/>
+                        <button name="action_draft" type="object" string="還原草稿"
+                                class="btn-secondary"
+                                invisible="state != 'confirm'"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirm"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" readonly="1"/>
+                                <field name="date" readonly="state != 'draft'"/>
+                                <field name="applicant_id" readonly="state != 'draft'"/>
+                            </group>
+                            <group>
+                                <field name="move_id"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="報廢明細">
+                                <field name="line_ids" readonly="state == 'confirm'">
+                                    <tree editable="bottom">
+                                        <field name="sequence"/>
+                                        <field name="asset_id" widget="many2one"/>
+                                        <field name="asset_name" readonly="1"/>
+                                        <field name="unit" readonly="1"/>
+                                        <field name="reason"/>
+                                        <field name="quantity" readonly="1"/>
+                                        <field name="amount" readonly="1"/>
+                                        <field name="accumulated_depreciation" readonly="1"/>
+                                        <field name="value" readonly="1"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_asset_disposal_line_tree" model="ir.ui.view">
+            <field name="name">asset.disposal.line.tree</field>
+            <field name="model">asset.disposal.line</field>
+            <field name="arch" type="xml">
+                <tree string="資產報廢明細">
+                    <field name="disposal_id"/>
+                    <field name="sequence"/>
+                    <field name="asset_id"/>
+                    <field name="asset_name"/>
+                    <field name="unit"/>
+                    <field name="reason"/>
+                    <field name="quantity" readonly="1"/>
+                    <field name="amount"/>
+                    <field name="accumulated_depreciation"/>
+                    <field name="value"/>
+                </tree>
+            </field>
+        </record>
+    </data>
+</odoo>

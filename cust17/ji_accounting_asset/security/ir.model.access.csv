@@ -1,0 +1,17 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_asset_config,access.asset.config,model_asset_config,account.group_account_user,1,1,1,1
+access_asset_category,access.asset.category,model_asset_category,account.group_account_user,1,1,1,1
+access_asset_master,access.asset.master,model_asset_master,account.group_account_user,1,1,1,1
+access_asset_depreciation,access.asset.depreciation,model_asset_depreciation,account.group_account_user,1,1,1,1
+access_asset_exe_depreciation_wizard,access.asset.exe.depreciation.wizard,model_asset_exe_depreciation_wizard,account.group_account_user,1,1,1,1
+access_asset_reverse_depreciation_wizard,access.asset.reverse.depreciation.wizard,model_asset_reverse_depreciation_wizard,account.group_account_user,1,1,1,1
+access_asset_disposal,access.asset.disposal,model_asset_disposal,account.group_account_user,1,1,1,1
+access_asset_disposal_line,access.asset.disposal.line,model_asset_disposal_line,account.group_account_user,1,1,1,1
+access_asset_adjust,access.asset.adjust,model_asset_adjust,account.group_account_user,1,1,1,1
+access_asset_adjust_line,access.asset.adjust.line,model_asset_adjust_line,account.group_account_user,1,1,1,1
+access_asset_sale,access.asset.sale,model_asset_sale,account.group_account_user,1,1,1,1
+access_asset_sale_line,access.asset.sale.line,model_asset_sale_line,account.group_account_user,1,1,1,1
+access_asset_depreciation_report,access.asset.depreciation.report,model_asset_depreciation_report,account.group_account_user,1,1,1,1
+access_asset_depreciation_report_wizard,access.asset.depreciation.report.wizard,model_asset_depreciation_report_wizard,account.group_account_user,1,1,1,1
+access_asset_master_report,access.asset.master.report,model_asset_master_report,account.group_account_user,1,1,1,1
+access_asset_master_report_wizard,access.asset.master.report.wizard,model_asset_master_report_wizard,account.group_account_user,1,1,1,1

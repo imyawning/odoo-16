@@ -1,0 +1,76 @@
+/* 用印申請單樣式 */
+
+.o_kanban_card .badge-danger {
+    background-color: #dc3545;
+    color: white;
+}
+
+.o_kanban_card .badge-info {
+    background-color: #17a2b8;
+    color: white;
+}
+
+/* 急件標示 */
+.stamp-urgent {
+    background-color: #fff3cd;
+    border-left: 4px solid #ffc107;
+}
+
+/* 特急標示 */
+.stamp-very-urgent {
+    background-color: #f8d7da;
+    border-left: 4px solid #dc3545;
+}
+
+/* 狀態標籤 */
+.stamp-status-draft {
+    color: #6c757d;
+}
+
+.stamp-status-submitted {
+    color: #007bff;
+}
+
+.stamp-status-approved {
+    color: #28a745;
+}
+
+.stamp-status-rejected {
+    color: #dc3545;
+}
+
+.stamp-status-completed {
+    color: #17a2b8;
+}
+
+/* 看板卡片樣式 */
+.o_kanban_card.stamp-application {
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.o_kanban_card.stamp-application:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* 表單樣式 */
+.stamp-form-header {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.stamp-document-info {
+    background-color: #e3f2fd;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.stamp-approval-info {
+    background-color: #f3e5f5;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+} 

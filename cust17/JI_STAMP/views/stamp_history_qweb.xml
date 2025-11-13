@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="stamp_history_table">
+        <table class="table table-condensed table-bordered" style="table-layout: fixed; width: 100%;">
+            <thead>
+                <tr>
+                    <th style="width: 20%; white-space: nowrap;">節點名稱</th>
+                    <th style="width: 20%; white-space: nowrap;">狀態</th>
+                    <th style="width: 20%; white-space: nowrap;">簽核人</th>
+                    <th style="width: 20%; white-space: nowrap;">簽核時間</th>
+                    <th style="width: 20%; white-space: nowrap;">意見</th>
+                </tr>
+            </thead>
+            <tbody>
+                <t t-foreach="history" t-as="row">
+                    <tr>
+                        <td style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><t t-esc="row['activity']"/></td>
+                        <td style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><t t-esc="row['state']"/></td>
+                        <td style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><t t-esc="row['signer']"/></td>
+                        <td style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><t t-esc="row['time']"/></td>
+                        <td style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><t t-esc="row['comment']"/></td>
+                    </tr>
+                </t>
+            </tbody>
+        </table>
+    </template>
+</odoo>

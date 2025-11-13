@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- 調整樹狀視圖：增加日期和狀態 -->
+        <record id="view_asset_adjust_tree" model="ir.ui.view">
+            <field name="name">asset.adjust.tree</field>
+            <field name="model">asset.adjust</field>
+            <field name="arch" type="xml">
+                <tree string="資產調整作業">
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- 調整表單視圖：加入 Header, 日期, 明細, 備註 -->
+        <record id="view_asset_adjust_form" model="ir.ui.view">
+            <field name="name">asset.adjust.form</field>
+            <field name="model">asset.adjust</field>
+            <field name="arch" type="xml">
+                <form string="資產調整作業">
+                    <header>
+                        <!-- 只有在草稿狀態可以確認 -->
+                        <button name="action_confirm" type="object" string="確認" class="btn-primary" 
+                                invisible="state != 'draft'" modifiers="{'invisible': [('state', '!=', 'draft')]}"/>
+                        <!-- 只有在已確認狀態可以還原草稿 -->
+                        <button name="action_draft" type="object" string="還原草稿" class="btn-secondary" 
+                                invisible="state != 'confirm'" modifiers="{'invisible': [('state', '!=', 'confirm')]}"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" readonly="1"/>
+                                <!-- 只有在草稿狀態下日期可編輯 -->
+                                <field name="date" readonly="state != 'draft'"/> 
+                            </group>
+                            <group>
+                                <!-- 備註放在右側欄位 -->
+                                <field name="notes" readonly="state != 'draft'"/>
+                            </group>
+                        </group>
+                        
+                        <notebook>
+                            <page string="調整明細">
+                                <!-- 調整明細 line_ids，在已確認狀態下唯讀 -->
+                                <field name="line_ids" readonly="state == 'confirm'" modifiers="{'readonly': [('state', '=', 'confirm')]}">
+                                    <tree editable="bottom">
+                                        <field name="asset_id" required="1"/>
+                                        <field name="name"/>
+                                        <field name="old_value"/>
+                                        <field name="new_value"/>
+                                        <!-- 差額為計算欄位，必須唯讀 -->
+                                        <field name="difference" readonly="1"/> 
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

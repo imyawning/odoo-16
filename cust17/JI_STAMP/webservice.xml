@@ -1,0 +1,1325 @@
+This XML file does not appear to have any style information associated with it. The document tree is shown below.
+<wsdl:definitions xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://webservice.nana.dsc.com/" xmlns:intf="http://webservice.nana.dsc.com/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://webservice.nana.dsc.com/">
+<!-- WSDL created by Apache Axis version: 1.3
+Built on Oct 05, 2005 (05:23:37 EDT) -->
+<wsdl:message name="countWorkingTimeRequest">
+<wsdl:part name="pUserId" type="xsd:string"/>
+<wsdl:part name="pStartDateTime" type="xsd:string"/>
+<wsdl:part name="pEndDateTime" type="xsd:string"/>
+<wsdl:part name="pDateFormat" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="fetchProcInstancesRequest">
+<wsdl:part name="pProcessId" type="xsd:string"/>
+<wsdl:part name="pProcessInitialStartTime" type="xsd:string"/>
+<wsdl:part name="pProcessInitialEndTime" type="xsd:string"/>
+<wsdl:part name="pProcInstanceState" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="fetchFullProcInstanceWithSerialNoRequest">
+<wsdl:part name="pProcessInstanceSerialNo" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="bypassActivityRequest">
+<wsdl:part name="pActivityInstanceOID" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="updateFormValueBySerialNemberResponse"> </wsdl:message>
+<wsdl:message name="countWorkingTimeResponse">
+<wsdl:part name="countWorkingTimeReturn" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="invokeProcessAndAddCustActByOrgRequest">
+<wsdl:part name="pProcessPackageId" type="xsd:string"/>
+<wsdl:part name="pRequesterId" type="xsd:string"/>
+<wsdl:part name="pOrgUnitId" type="xsd:string"/>
+<wsdl:part name="pOrgId" type="xsd:string"/>
+<wsdl:part name="pFormDefOID" type="xsd:string"/>
+<wsdl:part name="pFormFieldValue" type="xsd:string"/>
+<wsdl:part name="pSubject" type="xsd:string"/>
+<wsdl:part name="pPostPSActDefsAsXML" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="isPerformerOfProcessInstanceResponse">
+<wsdl:part name="isPerformerOfProcessInstanceReturn" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="invokeProcessAndAddCustActByOrgResponse">
+<wsdl:part name="invokeProcessAndAddCustActByOrgReturn" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="fetchFormInstanceWithProcOIDResponse">
+<wsdl:part name="fetchFormInstanceWithProcOIDReturn" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="fetchProcInstanceWithSerialNoResponse">
+<wsdl:part name="fetchProcInstanceWithSerialNoReturn" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="fetchClosedProcInstancesResponse">
+<wsdl:part name="fetchClosedProcInstancesReturn" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="fetchOrgUnitOfUserIdResponse">
+<wsdl:part name="fetchOrgUnitOfUserIdReturn" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="fetchToDoWorkItemRequest">
+<wsdl:part name="pProcessIds" type="xsd:string"/>
+<wsdl:part name="pUserId" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="fetchWorkItemCountRequest">
+<wsdl:part name="pUserID" type="xsd:string"/>
+<wsdl:part name="pAccessCondition" type="xsd:int"/>
+<wsdl:part name="pViewTimesType" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="countWorkingDaysRequest">
+<wsdl:part name="pUserId" type="xsd:string"/>
+<wsdl:part name="pStartDateTime" type="xsd:string"/>
+<wsdl:part name="pEndDateTime" type="xsd:string"/>
+<wsdl:part name="pDateFormat" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="fetchProcessContextVariableResponse">
+<wsdl:part name="fetchProcessContextVariableReturn" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="fetchUniFormatFormInstanceWithProcSerlNoResponse">
+<wsdl:part name="fetchUniFormatFormInstanceWithProcSerlNoReturn" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="increaseViewTimesOfWorkAssignmentResponse"> </wsdl:message>
+<wsdl:message name="getFormFieldTemplateResponse">
+<wsdl:part name="getFormFieldTemplateReturn" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="completeWorkItemResponse"> </wsdl:message>
+<wsdl:message name="findFormOIDsOfProcessResponse">
+<wsdl:part name="findFormOIDsOfProcessReturn" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="fetchProcessContextVariableResponse1">
+<wsdl:part name="fetchProcessContextVariableReturn" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="fetchUniFormatFormInstanceWithProcOIDRequest">
+<wsdl:part name="pProcessInstanceOID" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="fetchFullProcInstanceWithOIDRequest">
+<wsdl:part name="pProcessInstanceOID" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="assignRelevantDataBySerialNoRequest">
+<wsdl:part name="pProcessInstanceSerialNo" type="xsd:string"/>
+<wsdl:part name="pRelevantDataId" type="xsd:string"/>
+<wsdl:part name="pRelevantDataValue" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="fetchCanTraceProcSNRequest">
+<wsdl:part name="pProcessIds" type="xsd:string"/>
+<wsdl:part name="pUserId" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="addCustomActivityResponse"> </wsdl:message>
+<wsdl:message name="invokeProcessRequest1">
+<wsdl:part name="pProcessPackageId" type="xsd:string"/>
+<wsdl:part name="pRequesterId" type="xsd:string"/>
+<wsdl:part name="pOrgUnitId" type="xsd:string"/>
+<wsdl:part name="pSubject" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="fetchDefaultSubstituteInfoRequest1">
+<wsdl:part name="pUserId" type="xsd:string"/>
+<wsdl:part name="pStartSeq" type="xsd:int"/>
+<wsdl:part name="pEndSeq" type="xsd:int"/>
+<wsdl:part name="pDate" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="findManagerByAppLvlResponse">
+<wsdl:part name="findManagerByAppLvlReturn" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="addCustomParallelAndSerialActivityRequest1">
+<wsdl:part name="pWorkItmeOID" type="xsd:string"/>
+<wsdl:part name="pPostPSActDefsAsXML" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="terminatedProcessForSerialNoRequest">
+<wsdl:part name="pProcessInstanceSerialNo" type="xsd:string"/>
+<wsdl:part name="pUserId" type="xsd:string"/>
+<wsdl:part name="pTerminatedComment" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="acceptWorkItemRequest">
+<wsdl:part name="pWorkItemOID" type="xsd:string"/>
+<wsdl:part name="pUserId" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="abortProcessForSerialNoRequest">
+<wsdl:part name="pProcessInstanceSerialNo" type="xsd:string"/>
+<wsdl:part name="pAbortComment" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="invokeProcessByOrgRequest">
+<wsdl:part name="pProcessPackageId" type="xsd:string"/>
+<wsdl:part name="pRequesterId" type="xsd:string"/>
+<wsdl:part name="pOrgUnitId" type="xsd:string"/>
+<wsdl:part name="pOrgId" type="xsd:string"/>
+<wsdl:part name="pFormDefOID" type="xsd:string"/>
+<wsdl:part name="pFormFieldValue" type="xsd:string"/>
+<wsdl:part name="pSubject" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="reexecuteActivityRequest">
+<wsdl:part name="pProcessSerialNo" type="xsd:string"/>
+<wsdl:part name="pAskReexecuteUserId" type="xsd:string"/>
+<wsdl:part name="pReexecuteActivityId" type="xsd:string"/>
+<wsdl:part name="pReexecuteComment" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="fetchProcInstanceWithOIDResponse">
+<wsdl:part name="fetchProcInstanceWithOIDReturn" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="updateDefaultSubstituteResponse"> </wsdl:message>
+<wsdl:message name="increaseViewTimesOfWorkAssignmentRequest">
+<wsdl:part name="pUserId" type="xsd:string"/>
+<wsdl:part name="pWorkItemOID" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="invokeProcessAndAddCustActRequest">
+<wsdl:part name="pProcessPackageId" type="xsd:string"/>
+<wsdl:part name="pRequesterId" type="xsd:string"/>
+<wsdl:part name="pOrgUnitId" type="xsd:string"/>
+<wsdl:part name="pFormDefOID" type="xsd:string"/>
+<wsdl:part name="pFormFieldValue" type="xsd:string"/>
+<wsdl:part name="pSubject" type="xsd:string"/>
+<wsdl:part name="pPostPSActDefsAsXML" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="managementReassignWorkItemResponse"> </wsdl:message>
+<wsdl:message name="fetchProcessContextVariableRequest1">
+<wsdl:part name="pProcessSerialNo" type="xsd:string"/>
+<wsdl:part name="pVariableId" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="checkWorkItemStateRequest">
+<wsdl:part name="pWorkItemOID" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="addCustomParallelActivityRequest">
+<wsdl:part name="pWorkItmeOID" type="xsd:string"/>
+<wsdl:part name="pPostParallelActDefsAsXML" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="addCloneSerialActivityRequest">
+<wsdl:part name="pProcessInstanceSN" type="xsd:string"/>
+<wsdl:part name="pActId" type="xsd:string"/>
+<wsdl:part name="pRefActId" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="bypassActivityResponse"> </wsdl:message>
+<wsdl:message name="managementChangeWorkItemOwnerRequest">
+<wsdl:part name="pAcceptorOID" type="xsd:string"/>
+<wsdl:part name="pWorkItemOID" type="xsd:string"/>
+<wsdl:part name="pReassignComment" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="addCustomParallelAndSerialActivityResponse"> </wsdl:message>
+<wsdl:message name="addLabelToNoticeWorkItemResponse">
+<wsdl:part name="addLabelToNoticeWorkItemReturn" type="xsd:boolean"/>
+</wsdl:message>
+<wsdl:message name="invokeProcessResponse">
+<wsdl:part name="invokeProcessReturn" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="fetchDefaultSubstituteInfoRequest">
+<wsdl:part name="pUserId" type="xsd:string"/>
+<wsdl:part name="pStartSeq" type="xsd:int"/>
+<wsdl:part name="pEndSeq" type="xsd:int"/>
+</wsdl:message>
+<wsdl:message name="terminatedProcessForSerialNoResponse"> </wsdl:message>
+<wsdl:message name="fetchDueDateResponse">
+<wsdl:part name="fetchDueDateReturn" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="assigneeReassignWorkItemResponse"> </wsdl:message>
+<wsdl:message name="managementReassignWorkItemRequest">
+<wsdl:part name="pAcceptorOID" type="xsd:string"/>
+<wsdl:part name="pWorkItemOID" type="xsd:string"/>
+<wsdl:part name="pReassignComment" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="getProjectsWithOrganizationIdResponse">
+<wsdl:part name="getProjectsWithOrganizationIdReturn" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="fetchFormInstanceWithProcOIDRequest">
+<wsdl:part name="pProcessInstanceOID" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="addCustomParallelActivityResponse"> </wsdl:message>
+<wsdl:message name="abortProcessForSerialNoResponse"> </wsdl:message>
+<wsdl:message name="getSubstituteStateResponse">
+<wsdl:part name="getSubstituteStateReturn" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="reserveNoCmDocumentResponse">
+<wsdl:part name="reserveNoCmDocumentReturn" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="completeWorkItemRequest">
+<wsdl:part name="pWorkItemOID" type="xsd:string"/>
+<wsdl:part name="pUserId" type="xsd:string"/>
+<wsdl:part name="pComment" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="fetchClosedProcInstancesRequest">
+<wsdl:part name="pProcessId" type="xsd:string"/>
+<wsdl:part name="pProcessClosedStartTime" type="xsd:string"/>
+<wsdl:part name="pProcessClosedEndTime" type="xsd:string"/>
+<wsdl:part name="pProcInstanceClosedState" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="fetchProcInstanceWithSerialNoRequest">
+<wsdl:part name="pProcessInstanceSerialNo" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="fetchFullProcInstanceWithSerialNoShowReferencesResponse">
+<wsdl:part name="fetchFullProcInstanceWithSerialNoShowReferencesReturn" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="removeLabelFromNoticeWorkItemResponse">
+<wsdl:part name="removeLabelFromNoticeWorkItemReturn" type="xsd:boolean"/>
+</wsdl:message>
+<wsdl:message name="assignRelevantDataBySerialNoResponse"> </wsdl:message>
+<wsdl:message name="acceptWorkItemResponse"> </wsdl:message>
+<wsdl:message name="getSysintegrationServerResponse">
+<wsdl:part name="getSysintegrationServerReturn" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="assigneeReassignWorkItemRequest">
+<wsdl:part name="pRequesterOID" type="xsd:string"/>
+<wsdl:part name="pAcceptorOID" type="xsd:string"/>
+<wsdl:part name="pWorkItemOID" type="xsd:string"/>
+<wsdl:part name="pReassignComment" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="fetchCanTraceProcSNResponse">
+<wsdl:part name="fetchCanTraceProcSNReturn" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="fetchProcessAbortOrTerminateCommentRequest">
+<wsdl:part name="pProcessSerialNo" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="fetchProcessContextVariableRequest">
+<wsdl:part name="pProcessSerialNo" type="xsd:string"/>
+<wsdl:part name="pVariableId" type="xsd:string"/>
+<wsdl:part name="pOnlyTextValue" type="xsd:boolean"/>
+</wsdl:message>
+<wsdl:message name="isPerformerOfProcessInstanceRequest">
+<wsdl:part name="pUserId" type="xsd:string"/>
+<wsdl:part name="pProcessInstanceSerialNo" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="addCloneSerialActivityResponse">
+<wsdl:part name="addCloneSerialActivityReturn" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="countWorkingDaysResponse">
+<wsdl:part name="countWorkingDaysReturn" type="xsd:int"/>
+</wsdl:message>
+<wsdl:message name="findManagerByAppLvlRequest">
+<wsdl:part name="pUserId" type="xsd:string"/>
+<wsdl:part name="pOrgUnitOID" type="xsd:string"/>
+<wsdl:part name="pLevelName" type="xsd:string"/>
+<wsdl:part name="pApprovalLevelType" type="xsd:string"/>
+<wsdl:part name="pIsDeptManager" type="xsd:boolean"/>
+</wsdl:message>
+<wsdl:message name="removeLabelFromNoticeWorkItemRequest">
+<wsdl:part name="pWorkItemOID" type="xsd:string"/>
+<wsdl:part name="pUserOID" type="xsd:string"/>
+<wsdl:part name="pLabelOID" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="fetchDefaultSubstituteInfoResponse">
+<wsdl:part name="fetchDefaultSubstituteInfoReturn" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="fetchDueDateRequest">
+<wsdl:part name="pUserId" type="xsd:string"/>
+<wsdl:part name="pBaseDate" type="xsd:string"/>
+<wsdl:part name="pDueDays" type="xsd:string"/>
+<wsdl:part name="pDateFormat" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="removeAbsenceRecordResponse"> </wsdl:message>
+<wsdl:message name="getProcessPackageRequest">
+<wsdl:part name="pProcessPackageId" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="getProcessPackageResponse">
+<wsdl:part name="getProcessPackageReturn" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="invokeProcessByParameterRequest">
+<wsdl:part name="pProcessPackageId" type="xsd:string"/>
+<wsdl:part name="pRequesterId" type="xsd:string"/>
+<wsdl:part name="pOrgUnitId" type="xsd:string"/>
+<wsdl:part name="pParameterId" type="xsd:string"/>
+<wsdl:part name="pInvokeParameter" type="xsd:string"/>
+<wsdl:part name="pSubject" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="fetchOrgUnitOfUserIdRequest">
+<wsdl:part name="pUserId" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="reexecuteActivityResponse"> </wsdl:message>
+<wsdl:message name="invokeProcessAndAddCustActResponse">
+<wsdl:part name="invokeProcessAndAddCustActReturn" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="fetchProcInstanceWithOIDRequest">
+<wsdl:part name="pProcessInstanceOID" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="checkWorkItemStateResponse">
+<wsdl:part name="checkWorkItemStateReturn" type="xsd:int"/>
+</wsdl:message>
+<wsdl:message name="invokeProcessRequest">
+<wsdl:part name="pProcessPackageId" type="xsd:string"/>
+<wsdl:part name="pRequesterId" type="xsd:string"/>
+<wsdl:part name="pOrgUnitId" type="xsd:string"/>
+<wsdl:part name="pFormDefOID" type="xsd:string"/>
+<wsdl:part name="pFormFieldValue" type="xsd:string"/>
+<wsdl:part name="pSubject" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="getSysintegrationServerRequest"> </wsdl:message>
+<wsdl:message name="addLabelToNoticeWorkItemRequest">
+<wsdl:part name="pWorkItemOID" type="xsd:string"/>
+<wsdl:part name="pUserOID" type="xsd:string"/>
+<wsdl:part name="pLabelOID" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="fetchWorkItemCountResponse">
+<wsdl:part name="fetchWorkItemCountReturn" type="xsd:int"/>
+</wsdl:message>
+<wsdl:message name="updateDefaultSubstituteRequest">
+<wsdl:part name="pUserId" type="xsd:string"/>
+<wsdl:part name="pDefaultSubstitutesId" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="managementChangeWorkItemOwnerResponse"> </wsdl:message>
+<wsdl:message name="addUserAbsenceRequest">
+<wsdl:part name="pUserId" type="xsd:string"/>
+<wsdl:part name="pStartTime" type="xsd:string"/>
+<wsdl:part name="pEndTime" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="fetchFormInstanceWithProcSerlNoRequest">
+<wsdl:part name="pProcessInstanceSerialNo" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="fetchUniFormatFormInstanceWithProcOIDResponse">
+<wsdl:part name="fetchUniFormatFormInstanceWithProcOIDReturn" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="removeAbsenceRecordRequest">
+<wsdl:part name="pUserId" type="xsd:string"/>
+<wsdl:part name="pStartDateTime" type="xsd:string"/>
+<wsdl:part name="pEndDateTime" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="getFormFieldTemplateRequest">
+<wsdl:part name="pFormDefinitionOID" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="reserveNoCmDocumentRequest">
+<wsdl:part name="pOriginalFullFileName" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="importOrganizationDataRequest">
+<wsdl:part name="pXMLData" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="invokeProcessByOrgResponse">
+<wsdl:part name="invokeProcessByOrgReturn" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="importOrganizationDataResponse">
+<wsdl:part name="importOrganizationDataReturn" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="invokeProcessByParameterResponse">
+<wsdl:part name="invokeProcessByParameterReturn" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="invokeProcessByParameterByOrgResponse">
+<wsdl:part name="invokeProcessByParameterByOrgReturn" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="fetchToDoWorkItemResponse">
+<wsdl:part name="fetchToDoWorkItemReturn" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="invokeProcessByOrgResponse1">
+<wsdl:part name="invokeProcessByOrgReturn" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="addCustomActivityRequest">
+<wsdl:part name="pWorkItmeOID" type="xsd:string"/>
+<wsdl:part name="pPostActDefsAsXML" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="fetchUniFormatFormInstanceWithProcSerlNoRequest">
+<wsdl:part name="pProcessInstanceSerialNo" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="addCustomParallelAndSerialActivityResponse1"> </wsdl:message>
+<wsdl:message name="fetchFullProcInstanceWithSerialNoResponse">
+<wsdl:part name="fetchFullProcInstanceWithSerialNoReturn" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="getProjectsWithOrganizationIdRequest">
+<wsdl:part name="pOrganizationId" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="addCustomParallelAndSerialActivityRequest">
+<wsdl:part name="pProcessInstanceSN" type="xsd:string"/>
+<wsdl:part name="pActId" type="xsd:string"/>
+<wsdl:part name="pRefActId" type="xsd:string"/>
+<wsdl:part name="pPostPSActDefsAsXML" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="addUserAbsenceResponse"> </wsdl:message>
+<wsdl:message name="fetchFormInstanceWithProcSerlNoResponse">
+<wsdl:part name="fetchFormInstanceWithProcSerlNoReturn" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="invokeProcessByOrgRequest1">
+<wsdl:part name="pProcessPackageId" type="xsd:string"/>
+<wsdl:part name="pRequesterId" type="xsd:string"/>
+<wsdl:part name="pOrgUnitId" type="xsd:string"/>
+<wsdl:part name="pOrgId" type="xsd:string"/>
+<wsdl:part name="pSubject" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="findFormOIDsOfProcessRequest">
+<wsdl:part name="pProcessPackageId" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="fetchFullProcInstanceWithSerialNoShowReferencesRequest">
+<wsdl:part name="pProcessInstanceSerialNo" type="xsd:string"/>
+<wsdl:part name="pShowReferences" type="xsd:boolean"/>
+</wsdl:message>
+<wsdl:message name="fetchProcInstancesResponse">
+<wsdl:part name="fetchProcInstancesReturn" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="fetchProcessAbortOrTerminateCommentResponse">
+<wsdl:part name="fetchProcessAbortOrTerminateCommentReturn" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="fetchProcSNMatchCurrtentPerformerRequest">
+<wsdl:part name="pProcessId" type="xsd:string"/>
+<wsdl:part name="pActId" type="xsd:string"/>
+<wsdl:part name="pUserId" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="fetchProcSNMatchCurrtentPerformerResponse">
+<wsdl:part name="fetchProcSNMatchCurrtentPerformerReturn" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="updateFormValueBySerialNemberRequest">
+<wsdl:part name="serialNumber" type="xsd:string"/>
+<wsdl:part name="pFormValue" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="fetchFullProcInstanceWithOIDResponse">
+<wsdl:part name="fetchFullProcInstanceWithOIDReturn" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="getSubstituteStateRequest">
+<wsdl:part name="pUserId" type="xsd:string"/>
+<wsdl:part name="pCheckTime" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="invokeProcessResponse1">
+<wsdl:part name="invokeProcessReturn" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="fetchDefaultSubstituteInfoResponse1">
+<wsdl:part name="fetchDefaultSubstituteInfoReturn" type="xsd:string"/>
+</wsdl:message>
+<wsdl:message name="invokeProcessByParameterByOrgRequest">
+<wsdl:part name="pProcessPackageId" type="xsd:string"/>
+<wsdl:part name="pRequesterId" type="xsd:string"/>
+<wsdl:part name="pOrgUnitId" type="xsd:string"/>
+<wsdl:part name="pOrgId" type="xsd:string"/>
+<wsdl:part name="pParameterId" type="xsd:string"/>
+<wsdl:part name="pInvokeParameter" type="xsd:string"/>
+<wsdl:part name="pSubject" type="xsd:string"/>
+</wsdl:message>
+<wsdl:portType name="WorkflowService">
+<wsdl:operation name="fetchDueDate" parameterOrder="pUserId pBaseDate pDueDays pDateFormat">
+<wsdl:input message="impl:fetchDueDateRequest" name="fetchDueDateRequest"/>
+<wsdl:output message="impl:fetchDueDateResponse" name="fetchDueDateResponse"/>
+</wsdl:operation>
+<wsdl:operation name="countWorkingTime" parameterOrder="pUserId pStartDateTime pEndDateTime pDateFormat">
+<wsdl:input message="impl:countWorkingTimeRequest" name="countWorkingTimeRequest"/>
+<wsdl:output message="impl:countWorkingTimeResponse" name="countWorkingTimeResponse"/>
+</wsdl:operation>
+<wsdl:operation name="assignRelevantDataBySerialNo" parameterOrder="pProcessInstanceSerialNo pRelevantDataId pRelevantDataValue">
+<wsdl:input message="impl:assignRelevantDataBySerialNoRequest" name="assignRelevantDataBySerialNoRequest"/>
+<wsdl:output message="impl:assignRelevantDataBySerialNoResponse" name="assignRelevantDataBySerialNoResponse"/>
+</wsdl:operation>
+<wsdl:operation name="addCustomActivity" parameterOrder="pWorkItmeOID pPostActDefsAsXML">
+<wsdl:input message="impl:addCustomActivityRequest" name="addCustomActivityRequest"/>
+<wsdl:output message="impl:addCustomActivityResponse" name="addCustomActivityResponse"/>
+</wsdl:operation>
+<wsdl:operation name="addCustomParallelActivity" parameterOrder="pWorkItmeOID pPostParallelActDefsAsXML">
+<wsdl:input message="impl:addCustomParallelActivityRequest" name="addCustomParallelActivityRequest"/>
+<wsdl:output message="impl:addCustomParallelActivityResponse" name="addCustomParallelActivityResponse"/>
+</wsdl:operation>
+<wsdl:operation name="addCloneSerialActivity" parameterOrder="pProcessInstanceSN pActId pRefActId">
+<wsdl:input message="impl:addCloneSerialActivityRequest" name="addCloneSerialActivityRequest"/>
+<wsdl:output message="impl:addCloneSerialActivityResponse" name="addCloneSerialActivityResponse"/>
+</wsdl:operation>
+<wsdl:operation name="countWorkingDays" parameterOrder="pUserId pStartDateTime pEndDateTime pDateFormat">
+<wsdl:input message="impl:countWorkingDaysRequest" name="countWorkingDaysRequest"/>
+<wsdl:output message="impl:countWorkingDaysResponse" name="countWorkingDaysResponse"/>
+</wsdl:operation>
+<wsdl:operation name="invokeProcess" parameterOrder="pProcessPackageId pRequesterId pOrgUnitId pFormDefOID pFormFieldValue pSubject">
+<wsdl:input message="impl:invokeProcessRequest" name="invokeProcessRequest"/>
+<wsdl:output message="impl:invokeProcessResponse" name="invokeProcessResponse"/>
+</wsdl:operation>
+<wsdl:operation name="invokeProcess" parameterOrder="pProcessPackageId pRequesterId pOrgUnitId pSubject">
+<wsdl:input message="impl:invokeProcessRequest1" name="invokeProcessRequest1"/>
+<wsdl:output message="impl:invokeProcessResponse1" name="invokeProcessResponse1"/>
+</wsdl:operation>
+<wsdl:operation name="bypassActivity" parameterOrder="pActivityInstanceOID">
+<wsdl:input message="impl:bypassActivityRequest" name="bypassActivityRequest"/>
+<wsdl:output message="impl:bypassActivityResponse" name="bypassActivityResponse"/>
+</wsdl:operation>
+<wsdl:operation name="updateDefaultSubstitute" parameterOrder="pUserId pDefaultSubstitutesId">
+<wsdl:input message="impl:updateDefaultSubstituteRequest" name="updateDefaultSubstituteRequest"/>
+<wsdl:output message="impl:updateDefaultSubstituteResponse" name="updateDefaultSubstituteResponse"/>
+</wsdl:operation>
+<wsdl:operation name="getProjectsWithOrganizationId" parameterOrder="pOrganizationId">
+<wsdl:input message="impl:getProjectsWithOrganizationIdRequest" name="getProjectsWithOrganizationIdRequest"/>
+<wsdl:output message="impl:getProjectsWithOrganizationIdResponse" name="getProjectsWithOrganizationIdResponse"/>
+</wsdl:operation>
+<wsdl:operation name="fetchOrgUnitOfUserId" parameterOrder="pUserId">
+<wsdl:input message="impl:fetchOrgUnitOfUserIdRequest" name="fetchOrgUnitOfUserIdRequest"/>
+<wsdl:output message="impl:fetchOrgUnitOfUserIdResponse" name="fetchOrgUnitOfUserIdResponse"/>
+</wsdl:operation>
+<wsdl:operation name="reserveNoCmDocument" parameterOrder="pOriginalFullFileName">
+<wsdl:input message="impl:reserveNoCmDocumentRequest" name="reserveNoCmDocumentRequest"/>
+<wsdl:output message="impl:reserveNoCmDocumentResponse" name="reserveNoCmDocumentResponse"/>
+</wsdl:operation>
+<wsdl:operation name="abortProcessForSerialNo" parameterOrder="pProcessInstanceSerialNo pAbortComment">
+<wsdl:input message="impl:abortProcessForSerialNoRequest" name="abortProcessForSerialNoRequest"/>
+<wsdl:output message="impl:abortProcessForSerialNoResponse" name="abortProcessForSerialNoResponse"/>
+</wsdl:operation>
+<wsdl:operation name="terminatedProcessForSerialNo" parameterOrder="pProcessInstanceSerialNo pUserId pTerminatedComment">
+<wsdl:input message="impl:terminatedProcessForSerialNoRequest" name="terminatedProcessForSerialNoRequest"/>
+<wsdl:output message="impl:terminatedProcessForSerialNoResponse" name="terminatedProcessForSerialNoResponse"/>
+</wsdl:operation>
+<wsdl:operation name="reexecuteActivity" parameterOrder="pProcessSerialNo pAskReexecuteUserId pReexecuteActivityId pReexecuteComment">
+<wsdl:input message="impl:reexecuteActivityRequest" name="reexecuteActivityRequest"/>
+<wsdl:output message="impl:reexecuteActivityResponse" name="reexecuteActivityResponse"/>
+</wsdl:operation>
+<wsdl:operation name="managementReassignWorkItem" parameterOrder="pAcceptorOID pWorkItemOID pReassignComment">
+<wsdl:input message="impl:managementReassignWorkItemRequest" name="managementReassignWorkItemRequest"/>
+<wsdl:output message="impl:managementReassignWorkItemResponse" name="managementReassignWorkItemResponse"/>
+</wsdl:operation>
+<wsdl:operation name="managementChangeWorkItemOwner" parameterOrder="pAcceptorOID pWorkItemOID pReassignComment">
+<wsdl:input message="impl:managementChangeWorkItemOwnerRequest" name="managementChangeWorkItemOwnerRequest"/>
+<wsdl:output message="impl:managementChangeWorkItemOwnerResponse" name="managementChangeWorkItemOwnerResponse"/>
+</wsdl:operation>
+<wsdl:operation name="addCustomParallelAndSerialActivity" parameterOrder="pProcessInstanceSN pActId pRefActId pPostPSActDefsAsXML">
+<wsdl:input message="impl:addCustomParallelAndSerialActivityRequest" name="addCustomParallelAndSerialActivityRequest"/>
+<wsdl:output message="impl:addCustomParallelAndSerialActivityResponse" name="addCustomParallelAndSerialActivityResponse"/>
+</wsdl:operation>
+<wsdl:operation name="addCustomParallelAndSerialActivity" parameterOrder="pWorkItmeOID pPostPSActDefsAsXML">
+<wsdl:input message="impl:addCustomParallelAndSerialActivityRequest1" name="addCustomParallelAndSerialActivityRequest1"/>
+<wsdl:output message="impl:addCustomParallelAndSerialActivityResponse1" name="addCustomParallelAndSerialActivityResponse1"/>
+</wsdl:operation>
+<wsdl:operation name="fetchUniFormatFormInstanceWithProcSerlNo" parameterOrder="pProcessInstanceSerialNo">
+<wsdl:input message="impl:fetchUniFormatFormInstanceWithProcSerlNoRequest" name="fetchUniFormatFormInstanceWithProcSerlNoRequest"/>
+<wsdl:output message="impl:fetchUniFormatFormInstanceWithProcSerlNoResponse" name="fetchUniFormatFormInstanceWithProcSerlNoResponse"/>
+</wsdl:operation>
+<wsdl:operation name="fetchFullProcInstanceWithSerialNo" parameterOrder="pProcessInstanceSerialNo">
+<wsdl:input message="impl:fetchFullProcInstanceWithSerialNoRequest" name="fetchFullProcInstanceWithSerialNoRequest"/>
+<wsdl:output message="impl:fetchFullProcInstanceWithSerialNoResponse" name="fetchFullProcInstanceWithSerialNoResponse"/>
+</wsdl:operation>
+<wsdl:operation name="fetchUniFormatFormInstanceWithProcOID" parameterOrder="pProcessInstanceOID">
+<wsdl:input message="impl:fetchUniFormatFormInstanceWithProcOIDRequest" name="fetchUniFormatFormInstanceWithProcOIDRequest"/>
+<wsdl:output message="impl:fetchUniFormatFormInstanceWithProcOIDResponse" name="fetchUniFormatFormInstanceWithProcOIDResponse"/>
+</wsdl:operation>
+<wsdl:operation name="fetchProcSNMatchCurrtentPerformer" parameterOrder="pProcessId pActId pUserId">
+<wsdl:input message="impl:fetchProcSNMatchCurrtentPerformerRequest" name="fetchProcSNMatchCurrtentPerformerRequest"/>
+<wsdl:output message="impl:fetchProcSNMatchCurrtentPerformerResponse" name="fetchProcSNMatchCurrtentPerformerResponse"/>
+</wsdl:operation>
+<wsdl:operation name="increaseViewTimesOfWorkAssignment" parameterOrder="pUserId pWorkItemOID">
+<wsdl:input message="impl:increaseViewTimesOfWorkAssignmentRequest" name="increaseViewTimesOfWorkAssignmentRequest"/>
+<wsdl:output message="impl:increaseViewTimesOfWorkAssignmentResponse" name="increaseViewTimesOfWorkAssignmentResponse"/>
+</wsdl:operation>
+<wsdl:operation name="removeAbsenceRecord" parameterOrder="pUserId pStartDateTime pEndDateTime">
+<wsdl:input message="impl:removeAbsenceRecordRequest" name="removeAbsenceRecordRequest"/>
+<wsdl:output message="impl:removeAbsenceRecordResponse" name="removeAbsenceRecordResponse"/>
+</wsdl:operation>
+<wsdl:operation name="getProcessPackage" parameterOrder="pProcessPackageId">
+<wsdl:input message="impl:getProcessPackageRequest" name="getProcessPackageRequest"/>
+<wsdl:output message="impl:getProcessPackageResponse" name="getProcessPackageResponse"/>
+</wsdl:operation>
+<wsdl:operation name="acceptWorkItem" parameterOrder="pWorkItemOID pUserId">
+<wsdl:input message="impl:acceptWorkItemRequest" name="acceptWorkItemRequest"/>
+<wsdl:output message="impl:acceptWorkItemResponse" name="acceptWorkItemResponse"/>
+</wsdl:operation>
+<wsdl:operation name="fetchToDoWorkItem" parameterOrder="pProcessIds pUserId">
+<wsdl:input message="impl:fetchToDoWorkItemRequest" name="fetchToDoWorkItemRequest"/>
+<wsdl:output message="impl:fetchToDoWorkItemResponse" name="fetchToDoWorkItemResponse"/>
+</wsdl:operation>
+<wsdl:operation name="isPerformerOfProcessInstance" parameterOrder="pUserId pProcessInstanceSerialNo">
+<wsdl:input message="impl:isPerformerOfProcessInstanceRequest" name="isPerformerOfProcessInstanceRequest"/>
+<wsdl:output message="impl:isPerformerOfProcessInstanceResponse" name="isPerformerOfProcessInstanceResponse"/>
+</wsdl:operation>
+<wsdl:operation name="fetchProcInstanceWithSerialNo" parameterOrder="pProcessInstanceSerialNo">
+<wsdl:input message="impl:fetchProcInstanceWithSerialNoRequest" name="fetchProcInstanceWithSerialNoRequest"/>
+<wsdl:output message="impl:fetchProcInstanceWithSerialNoResponse" name="fetchProcInstanceWithSerialNoResponse"/>
+</wsdl:operation>
+<wsdl:operation name="fetchFullProcInstanceWithOID" parameterOrder="pProcessInstanceOID">
+<wsdl:input message="impl:fetchFullProcInstanceWithOIDRequest" name="fetchFullProcInstanceWithOIDRequest"/>
+<wsdl:output message="impl:fetchFullProcInstanceWithOIDResponse" name="fetchFullProcInstanceWithOIDResponse"/>
+</wsdl:operation>
+<wsdl:operation name="fetchFormInstanceWithProcOID" parameterOrder="pProcessInstanceOID">
+<wsdl:input message="impl:fetchFormInstanceWithProcOIDRequest" name="fetchFormInstanceWithProcOIDRequest"/>
+<wsdl:output message="impl:fetchFormInstanceWithProcOIDResponse" name="fetchFormInstanceWithProcOIDResponse"/>
+</wsdl:operation>
+<wsdl:operation name="fetchCanTraceProcSN" parameterOrder="pProcessIds pUserId">
+<wsdl:input message="impl:fetchCanTraceProcSNRequest" name="fetchCanTraceProcSNRequest"/>
+<wsdl:output message="impl:fetchCanTraceProcSNResponse" name="fetchCanTraceProcSNResponse"/>
+</wsdl:operation>
+<wsdl:operation name="fetchProcInstanceWithOID" parameterOrder="pProcessInstanceOID">
+<wsdl:input message="impl:fetchProcInstanceWithOIDRequest" name="fetchProcInstanceWithOIDRequest"/>
+<wsdl:output message="impl:fetchProcInstanceWithOIDResponse" name="fetchProcInstanceWithOIDResponse"/>
+</wsdl:operation>
+<wsdl:operation name="fetchClosedProcInstances" parameterOrder="pProcessId pProcessClosedStartTime pProcessClosedEndTime pProcInstanceClosedState">
+<wsdl:input message="impl:fetchClosedProcInstancesRequest" name="fetchClosedProcInstancesRequest"/>
+<wsdl:output message="impl:fetchClosedProcInstancesResponse" name="fetchClosedProcInstancesResponse"/>
+</wsdl:operation>
+<wsdl:operation name="fetchFormInstanceWithProcSerlNo" parameterOrder="pProcessInstanceSerialNo">
+<wsdl:input message="impl:fetchFormInstanceWithProcSerlNoRequest" name="fetchFormInstanceWithProcSerlNoRequest"/>
+<wsdl:output message="impl:fetchFormInstanceWithProcSerlNoResponse" name="fetchFormInstanceWithProcSerlNoResponse"/>
+</wsdl:operation>
+<wsdl:operation name="fetchProcInstances" parameterOrder="pProcessId pProcessInitialStartTime pProcessInitialEndTime pProcInstanceState">
+<wsdl:input message="impl:fetchProcInstancesRequest" name="fetchProcInstancesRequest"/>
+<wsdl:output message="impl:fetchProcInstancesResponse" name="fetchProcInstancesResponse"/>
+</wsdl:operation>
+<wsdl:operation name="updateFormValueBySerialNember" parameterOrder="serialNumber pFormValue">
+<wsdl:input message="impl:updateFormValueBySerialNemberRequest" name="updateFormValueBySerialNemberRequest"/>
+<wsdl:output message="impl:updateFormValueBySerialNemberResponse" name="updateFormValueBySerialNemberResponse"/>
+</wsdl:operation>
+<wsdl:operation name="completeWorkItem" parameterOrder="pWorkItemOID pUserId pComment">
+<wsdl:input message="impl:completeWorkItemRequest" name="completeWorkItemRequest"/>
+<wsdl:output message="impl:completeWorkItemResponse" name="completeWorkItemResponse"/>
+</wsdl:operation>
+<wsdl:operation name="getSubstituteState" parameterOrder="pUserId pCheckTime">
+<wsdl:input message="impl:getSubstituteStateRequest" name="getSubstituteStateRequest"/>
+<wsdl:output message="impl:getSubstituteStateResponse" name="getSubstituteStateResponse"/>
+</wsdl:operation>
+<wsdl:operation name="fetchDefaultSubstituteInfo" parameterOrder="pUserId pStartSeq pEndSeq">
+<wsdl:input message="impl:fetchDefaultSubstituteInfoRequest" name="fetchDefaultSubstituteInfoRequest"/>
+<wsdl:output message="impl:fetchDefaultSubstituteInfoResponse" name="fetchDefaultSubstituteInfoResponse"/>
+</wsdl:operation>
+<wsdl:operation name="fetchDefaultSubstituteInfo" parameterOrder="pUserId pStartSeq pEndSeq pDate">
+<wsdl:input message="impl:fetchDefaultSubstituteInfoRequest1" name="fetchDefaultSubstituteInfoRequest1"/>
+<wsdl:output message="impl:fetchDefaultSubstituteInfoResponse1" name="fetchDefaultSubstituteInfoResponse1"/>
+</wsdl:operation>
+<wsdl:operation name="getSysintegrationServer">
+<wsdl:input message="impl:getSysintegrationServerRequest" name="getSysintegrationServerRequest"/>
+<wsdl:output message="impl:getSysintegrationServerResponse" name="getSysintegrationServerResponse"/>
+</wsdl:operation>
+<wsdl:operation name="findManagerByAppLvl" parameterOrder="pUserId pOrgUnitOID pLevelName pApprovalLevelType pIsDeptManager">
+<wsdl:input message="impl:findManagerByAppLvlRequest" name="findManagerByAppLvlRequest"/>
+<wsdl:output message="impl:findManagerByAppLvlResponse" name="findManagerByAppLvlResponse"/>
+</wsdl:operation>
+<wsdl:operation name="addUserAbsence" parameterOrder="pUserId pStartTime pEndTime">
+<wsdl:input message="impl:addUserAbsenceRequest" name="addUserAbsenceRequest"/>
+<wsdl:output message="impl:addUserAbsenceResponse" name="addUserAbsenceResponse"/>
+</wsdl:operation>
+<wsdl:operation name="fetchProcessAbortOrTerminateComment" parameterOrder="pProcessSerialNo">
+<wsdl:input message="impl:fetchProcessAbortOrTerminateCommentRequest" name="fetchProcessAbortOrTerminateCommentRequest"/>
+<wsdl:output message="impl:fetchProcessAbortOrTerminateCommentResponse" name="fetchProcessAbortOrTerminateCommentResponse"/>
+</wsdl:operation>
+<wsdl:operation name="fetchFullProcInstanceWithSerialNoShowReferences" parameterOrder="pProcessInstanceSerialNo pShowReferences">
+<wsdl:input message="impl:fetchFullProcInstanceWithSerialNoShowReferencesRequest" name="fetchFullProcInstanceWithSerialNoShowReferencesRequest"/>
+<wsdl:output message="impl:fetchFullProcInstanceWithSerialNoShowReferencesResponse" name="fetchFullProcInstanceWithSerialNoShowReferencesResponse"/>
+</wsdl:operation>
+<wsdl:operation name="invokeProcessAndAddCustActByOrg" parameterOrder="pProcessPackageId pRequesterId pOrgUnitId pOrgId pFormDefOID pFormFieldValue pSubject pPostPSActDefsAsXML">
+<wsdl:input message="impl:invokeProcessAndAddCustActByOrgRequest" name="invokeProcessAndAddCustActByOrgRequest"/>
+<wsdl:output message="impl:invokeProcessAndAddCustActByOrgResponse" name="invokeProcessAndAddCustActByOrgResponse"/>
+</wsdl:operation>
+<wsdl:operation name="invokeProcessByParameter" parameterOrder="pProcessPackageId pRequesterId pOrgUnitId pParameterId pInvokeParameter pSubject">
+<wsdl:input message="impl:invokeProcessByParameterRequest" name="invokeProcessByParameterRequest"/>
+<wsdl:output message="impl:invokeProcessByParameterResponse" name="invokeProcessByParameterResponse"/>
+</wsdl:operation>
+<wsdl:operation name="importOrganizationData" parameterOrder="pXMLData">
+<wsdl:input message="impl:importOrganizationDataRequest" name="importOrganizationDataRequest"/>
+<wsdl:output message="impl:importOrganizationDataResponse" name="importOrganizationDataResponse"/>
+</wsdl:operation>
+<wsdl:operation name="invokeProcessByOrg" parameterOrder="pProcessPackageId pRequesterId pOrgUnitId pOrgId pFormDefOID pFormFieldValue pSubject">
+<wsdl:input message="impl:invokeProcessByOrgRequest" name="invokeProcessByOrgRequest"/>
+<wsdl:output message="impl:invokeProcessByOrgResponse" name="invokeProcessByOrgResponse"/>
+</wsdl:operation>
+<wsdl:operation name="invokeProcessByOrg" parameterOrder="pProcessPackageId pRequesterId pOrgUnitId pOrgId pSubject">
+<wsdl:input message="impl:invokeProcessByOrgRequest1" name="invokeProcessByOrgRequest1"/>
+<wsdl:output message="impl:invokeProcessByOrgResponse1" name="invokeProcessByOrgResponse1"/>
+</wsdl:operation>
+<wsdl:operation name="invokeProcessByParameterByOrg" parameterOrder="pProcessPackageId pRequesterId pOrgUnitId pOrgId pParameterId pInvokeParameter pSubject">
+<wsdl:input message="impl:invokeProcessByParameterByOrgRequest" name="invokeProcessByParameterByOrgRequest"/>
+<wsdl:output message="impl:invokeProcessByParameterByOrgResponse" name="invokeProcessByParameterByOrgResponse"/>
+</wsdl:operation>
+<wsdl:operation name="assigneeReassignWorkItem" parameterOrder="pRequesterOID pAcceptorOID pWorkItemOID pReassignComment">
+<wsdl:input message="impl:assigneeReassignWorkItemRequest" name="assigneeReassignWorkItemRequest"/>
+<wsdl:output message="impl:assigneeReassignWorkItemResponse" name="assigneeReassignWorkItemResponse"/>
+</wsdl:operation>
+<wsdl:operation name="fetchProcessContextVariable" parameterOrder="pProcessSerialNo pVariableId pOnlyTextValue">
+<wsdl:input message="impl:fetchProcessContextVariableRequest" name="fetchProcessContextVariableRequest"/>
+<wsdl:output message="impl:fetchProcessContextVariableResponse" name="fetchProcessContextVariableResponse"/>
+</wsdl:operation>
+<wsdl:operation name="fetchProcessContextVariable" parameterOrder="pProcessSerialNo pVariableId">
+<wsdl:input message="impl:fetchProcessContextVariableRequest1" name="fetchProcessContextVariableRequest1"/>
+<wsdl:output message="impl:fetchProcessContextVariableResponse1" name="fetchProcessContextVariableResponse1"/>
+</wsdl:operation>
+<wsdl:operation name="checkWorkItemState" parameterOrder="pWorkItemOID">
+<wsdl:input message="impl:checkWorkItemStateRequest" name="checkWorkItemStateRequest"/>
+<wsdl:output message="impl:checkWorkItemStateResponse" name="checkWorkItemStateResponse"/>
+</wsdl:operation>
+<wsdl:operation name="removeLabelFromNoticeWorkItem" parameterOrder="pWorkItemOID pUserOID pLabelOID">
+<wsdl:input message="impl:removeLabelFromNoticeWorkItemRequest" name="removeLabelFromNoticeWorkItemRequest"/>
+<wsdl:output message="impl:removeLabelFromNoticeWorkItemResponse" name="removeLabelFromNoticeWorkItemResponse"/>
+</wsdl:operation>
+<wsdl:operation name="invokeProcessAndAddCustAct" parameterOrder="pProcessPackageId pRequesterId pOrgUnitId pFormDefOID pFormFieldValue pSubject pPostPSActDefsAsXML">
+<wsdl:input message="impl:invokeProcessAndAddCustActRequest" name="invokeProcessAndAddCustActRequest"/>
+<wsdl:output message="impl:invokeProcessAndAddCustActResponse" name="invokeProcessAndAddCustActResponse"/>
+</wsdl:operation>
+<wsdl:operation name="getFormFieldTemplate" parameterOrder="pFormDefinitionOID">
+<wsdl:input message="impl:getFormFieldTemplateRequest" name="getFormFieldTemplateRequest"/>
+<wsdl:output message="impl:getFormFieldTemplateResponse" name="getFormFieldTemplateResponse"/>
+</wsdl:operation>
+<wsdl:operation name="addLabelToNoticeWorkItem" parameterOrder="pWorkItemOID pUserOID pLabelOID">
+<wsdl:input message="impl:addLabelToNoticeWorkItemRequest" name="addLabelToNoticeWorkItemRequest"/>
+<wsdl:output message="impl:addLabelToNoticeWorkItemResponse" name="addLabelToNoticeWorkItemResponse"/>
+</wsdl:operation>
+<wsdl:operation name="fetchWorkItemCount" parameterOrder="pUserID pAccessCondition pViewTimesType">
+<wsdl:input message="impl:fetchWorkItemCountRequest" name="fetchWorkItemCountRequest"/>
+<wsdl:output message="impl:fetchWorkItemCountResponse" name="fetchWorkItemCountResponse"/>
+</wsdl:operation>
+<wsdl:operation name="findFormOIDsOfProcess" parameterOrder="pProcessPackageId">
+<wsdl:input message="impl:findFormOIDsOfProcessRequest" name="findFormOIDsOfProcessRequest"/>
+<wsdl:output message="impl:findFormOIDsOfProcessResponse" name="findFormOIDsOfProcessResponse"/>
+</wsdl:operation>
+</wsdl:portType>
+<wsdl:binding name="WorkflowServiceSoapBinding" type="impl:WorkflowService">
+<wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="fetchDueDate">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="fetchDueDateRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="fetchDueDateResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="countWorkingTime">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="countWorkingTimeRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="countWorkingTimeResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="assignRelevantDataBySerialNo">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="assignRelevantDataBySerialNoRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="assignRelevantDataBySerialNoResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="addCustomActivity">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="addCustomActivityRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="addCustomActivityResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="addCustomParallelActivity">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="addCustomParallelActivityRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="addCustomParallelActivityResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="addCloneSerialActivity">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="addCloneSerialActivityRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="addCloneSerialActivityResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="countWorkingDays">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="countWorkingDaysRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="countWorkingDaysResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="invokeProcess">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="invokeProcessRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="invokeProcessResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="invokeProcess">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="invokeProcessRequest1">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="invokeProcessResponse1">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="bypassActivity">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="bypassActivityRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="bypassActivityResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="updateDefaultSubstitute">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="updateDefaultSubstituteRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="updateDefaultSubstituteResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="getProjectsWithOrganizationId">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="getProjectsWithOrganizationIdRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="getProjectsWithOrganizationIdResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="fetchOrgUnitOfUserId">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="fetchOrgUnitOfUserIdRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="fetchOrgUnitOfUserIdResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="reserveNoCmDocument">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="reserveNoCmDocumentRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="reserveNoCmDocumentResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="abortProcessForSerialNo">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="abortProcessForSerialNoRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="abortProcessForSerialNoResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="terminatedProcessForSerialNo">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="terminatedProcessForSerialNoRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="terminatedProcessForSerialNoResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="reexecuteActivity">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="reexecuteActivityRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="reexecuteActivityResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="managementReassignWorkItem">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="managementReassignWorkItemRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="managementReassignWorkItemResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="managementChangeWorkItemOwner">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="managementChangeWorkItemOwnerRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="managementChangeWorkItemOwnerResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="addCustomParallelAndSerialActivity">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="addCustomParallelAndSerialActivityRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="addCustomParallelAndSerialActivityResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="addCustomParallelAndSerialActivity">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="addCustomParallelAndSerialActivityRequest1">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="addCustomParallelAndSerialActivityResponse1">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="fetchUniFormatFormInstanceWithProcSerlNo">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="fetchUniFormatFormInstanceWithProcSerlNoRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="fetchUniFormatFormInstanceWithProcSerlNoResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="fetchFullProcInstanceWithSerialNo">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="fetchFullProcInstanceWithSerialNoRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="fetchFullProcInstanceWithSerialNoResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="fetchUniFormatFormInstanceWithProcOID">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="fetchUniFormatFormInstanceWithProcOIDRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="fetchUniFormatFormInstanceWithProcOIDResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="fetchProcSNMatchCurrtentPerformer">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="fetchProcSNMatchCurrtentPerformerRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="fetchProcSNMatchCurrtentPerformerResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="increaseViewTimesOfWorkAssignment">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="increaseViewTimesOfWorkAssignmentRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="increaseViewTimesOfWorkAssignmentResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="removeAbsenceRecord">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="removeAbsenceRecordRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="removeAbsenceRecordResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="getProcessPackage">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="getProcessPackageRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="getProcessPackageResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="acceptWorkItem">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="acceptWorkItemRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="acceptWorkItemResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="fetchToDoWorkItem">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="fetchToDoWorkItemRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="fetchToDoWorkItemResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="isPerformerOfProcessInstance">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="isPerformerOfProcessInstanceRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="isPerformerOfProcessInstanceResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="fetchProcInstanceWithSerialNo">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="fetchProcInstanceWithSerialNoRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="fetchProcInstanceWithSerialNoResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="fetchFullProcInstanceWithOID">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="fetchFullProcInstanceWithOIDRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="fetchFullProcInstanceWithOIDResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="fetchFormInstanceWithProcOID">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="fetchFormInstanceWithProcOIDRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="fetchFormInstanceWithProcOIDResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="fetchCanTraceProcSN">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="fetchCanTraceProcSNRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="fetchCanTraceProcSNResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="fetchProcInstanceWithOID">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="fetchProcInstanceWithOIDRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="fetchProcInstanceWithOIDResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="fetchClosedProcInstances">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="fetchClosedProcInstancesRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="fetchClosedProcInstancesResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="fetchFormInstanceWithProcSerlNo">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="fetchFormInstanceWithProcSerlNoRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="fetchFormInstanceWithProcSerlNoResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="fetchProcInstances">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="fetchProcInstancesRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="fetchProcInstancesResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="updateFormValueBySerialNember">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="updateFormValueBySerialNemberRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="updateFormValueBySerialNemberResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="completeWorkItem">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="completeWorkItemRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="completeWorkItemResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="getSubstituteState">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="getSubstituteStateRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="getSubstituteStateResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="fetchDefaultSubstituteInfo">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="fetchDefaultSubstituteInfoRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="fetchDefaultSubstituteInfoResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="fetchDefaultSubstituteInfo">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="fetchDefaultSubstituteInfoRequest1">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="fetchDefaultSubstituteInfoResponse1">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="getSysintegrationServer">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="getSysintegrationServerRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="getSysintegrationServerResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="findManagerByAppLvl">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="findManagerByAppLvlRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="findManagerByAppLvlResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="addUserAbsence">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="addUserAbsenceRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="addUserAbsenceResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="fetchProcessAbortOrTerminateComment">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="fetchProcessAbortOrTerminateCommentRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="fetchProcessAbortOrTerminateCommentResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="fetchFullProcInstanceWithSerialNoShowReferences">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="fetchFullProcInstanceWithSerialNoShowReferencesRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="fetchFullProcInstanceWithSerialNoShowReferencesResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="invokeProcessAndAddCustActByOrg">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="invokeProcessAndAddCustActByOrgRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="invokeProcessAndAddCustActByOrgResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="invokeProcessByParameter">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="invokeProcessByParameterRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="invokeProcessByParameterResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="importOrganizationData">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="importOrganizationDataRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="importOrganizationDataResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="invokeProcessByOrg">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="invokeProcessByOrgRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="invokeProcessByOrgResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="invokeProcessByOrg">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="invokeProcessByOrgRequest1">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="invokeProcessByOrgResponse1">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="invokeProcessByParameterByOrg">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="invokeProcessByParameterByOrgRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="invokeProcessByParameterByOrgResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="assigneeReassignWorkItem">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="assigneeReassignWorkItemRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="assigneeReassignWorkItemResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="fetchProcessContextVariable">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="fetchProcessContextVariableRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="fetchProcessContextVariableResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="fetchProcessContextVariable">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="fetchProcessContextVariableRequest1">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="fetchProcessContextVariableResponse1">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="checkWorkItemState">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="checkWorkItemStateRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="checkWorkItemStateResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="removeLabelFromNoticeWorkItem">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="removeLabelFromNoticeWorkItemRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="removeLabelFromNoticeWorkItemResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="invokeProcessAndAddCustAct">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="invokeProcessAndAddCustActRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="invokeProcessAndAddCustActResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="getFormFieldTemplate">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="getFormFieldTemplateRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="getFormFieldTemplateResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="addLabelToNoticeWorkItem">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="addLabelToNoticeWorkItemRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="addLabelToNoticeWorkItemResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="fetchWorkItemCount">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="fetchWorkItemCountRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="fetchWorkItemCountResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="findFormOIDsOfProcess">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="findFormOIDsOfProcessRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="findFormOIDsOfProcessResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.nana.dsc.com/" use="encoded"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="WorkflowServiceService">
+<wsdl:port binding="impl:WorkflowServiceSoapBinding" name="WorkflowService">
+<wsdlsoap:address location="http://192.168.3.229:8086/NaNaWeb/services/WorkflowService"/>
+</wsdl:port>
+</wsdl:service>
+</wsdl:definitions>

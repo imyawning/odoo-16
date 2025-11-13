@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_asset_category_tree" model="ir.ui.view">
+            <field name="name">asset.category.tree</field>
+            <field name="model">asset.category</field>
+            <field name="arch" type="xml">
+                <tree string="固定資產類別">
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="depreciation_method"/>
+                    <field name="depreciation_months"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_asset_category_form" model="ir.ui.view">
+            <field name="name">asset.category.form</field>
+            <field name="model">asset.category</field>
+            <field name="arch" type="xml">
+                <form string="固定資產類別">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="code"/>
+                                <field name="name"/>
+                                <field name="depreciation_method"/>
+                                <field name="depreciation_months"/>
+                            </group>
+                            <group>
+                                <field name="is_redepreciation"/>
+                                <field name="redepreciation_months" invisible="not is_redepreciation"/>
+                                <field name="asset_account_id"/>
+                                <field name="asset_account_acc_id"/>
+                                <field name="asset_account_dep_id"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

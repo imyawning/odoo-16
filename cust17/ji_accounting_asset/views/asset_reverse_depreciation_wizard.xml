@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_asset_reverse_depreciation_wizard_form" model="ir.ui.view">
+            <field name="name">asset.reverse.depreciation.wizard.form</field>
+            <field name="model">asset.reverse.depreciation.wizard</field>
+            <field name="arch" type="xml">
+                <form string="批次還原折舊">
+                    <group>
+                        <field name="depreciation_date"/>
+                        <field name="category_ids" widget="many2many_tags"/>
+                    </group>
+                    <footer>
+                        <button string="還原" name="action_reverse" type="object" class="btn-primary"/>
+                        <button string="取消" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

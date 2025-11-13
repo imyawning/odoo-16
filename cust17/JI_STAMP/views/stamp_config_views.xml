@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_stamp_config_form" model="ir.ui.view">
+        <field name="name">stamp.config.form</field>
+        <field name="model">stamp.config</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="test_efgp_connection" string="測試 EFGP 連線" type="object" class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group string="EFGP 整合設定">
+                            <field name="company_id" invisible="1"/>
+                            <field name="efgp_enabled"/>
+                            <field name="efgp_soap_url" required="1" invisible="not efgp_enabled"/>
+                            </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_stamp_config" model="ir.actions.act_window">
+        <field name="name">用印申請設定</field>
+        <field name="res_model">stamp.config</field>
+        <field name="view_mode">form</field>
+        <field name="target">current</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                設定 EFGP 整合參數
+            </p>
+            <p>
+                在這裡設定與 EFGP 系統的連線參數，
+                包括啟用整合和設定 SOAP URL。
+            </p>
+        </field>
+    </record>
+</odoo>

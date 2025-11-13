@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_asset_master_tree" model="ir.ui.view">
+        <field name="name">asset.master.tree</field>
+        <field name="model">asset.master</field>
+        <field name="arch" type="xml">
+            <tree string="資產主檔" decoration-info="state == 'draft'" decoration-success="state == 'confirm'" decoration-warning="state == 'depreciation'">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="category_id"/>
+                <field name="group"/>
+                <field name="purchase_date"/>
+                <field name="amount"/>
+                <field name="accumulated_depreciation"/>
+                <field name="value"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_asset_master_form" model="ir.ui.view">
+        <field name="name">asset.master.form</field>
+        <field name="model">asset.master</field>
+        <field name="arch" type="xml">
+            <form string="資產主檔">
+                <header>
+                    <button name="action_confirm" type="object" string="確認" class="btn-primary" invisible="state != 'draft'" modifiers="{'invisible': [('state', '!=', 'draft')]}"/>
+                    <button name="action_draft" type="object" string="回草稿" class="btn-secondary" invisible="state != 'confirm'" modifiers="{'invisible': [('state', '!=', 'confirmed')]}"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="code" readonly="state != 'draft'"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="category_id" readonly="state != 'draft'"/>
+                            <field name="supplier_id" readonly="state != 'draft'"/>
+                            <field name="group"/>
+                        </group>
+                        <group>
+                            <field name="unit"/>
+                            <field name="quantity" readonly="state != 'draft'"/>
+                            <field name="unit_price" readonly="state != 'draft'"/>
+                            <field name="amount" readonly="state != 'draft'"/>
+                            <field name="state"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="折舊資訊">
+                            <group>
+                                <group>
+                                    <field name="purchase_date"/>
+                                    <field name="account_date" readonly="state != 'draft'"/>
+                                    <field name="depreciation_method" readonly="state != 'draft'"/>
+                                    <field name="depreciation_months" readonly="state != 'draft'"/>
+                                    <field name="remaining_months" readonly="state != 'draft'"/>
+                                    <field name="depreciation_date" readonly="state != 'draft'"/>
+                                </group>
+                                <group>
+                                    <field name="reserved_residual" readonly="state != 'draft'"/>
+                                    <field name="accumulated_depreciation" readonly="state != 'draft'"/>
+                                    <field name="ytd_depreciation" readonly="state != 'draft'"/>
+                                    <field name="value" readonly="state != 'draft'"/>
+                                    <field name="last_depreciation_date" readonly="state != 'draft'"/>
+                                    <field name="is_redepreciation" readonly="state != 'draft'"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="科目資訊">
+                            <group>
+                                <field name="asset_account_id" readonly="state != 'draft'"/>
+                                <field name="asset_account_acc_id" readonly="state != 'draft'"/>
+                                <field name="asset_account_dep_id"/>
+                            </group>
+                        </page>
+                        <page string="資產資訊">
+                            <group>
+                                <group>
+                                    <field name="invoice_id"/>
+                                    <field name="ref"/>
+                                    <field name="notes"/>
+                                </group>
+                                <group>
+                                    <field name="responsible_id"/>
+                                    <field name="account_analytic_id" options="{'no_create': True, 'no_open': True}"/>
+                                    <field name="location"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_asset_master_search" model="ir.ui.view">
+        <field name="name">asset.master.search</field>
+        <field name="model">asset.master</field>
+        <field name="arch" type="xml">
+            <search string="資產主檔">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="category_id"/>
+                <field name="group"/>
+                <field name="responsible_id"/>
+                <field name="account_analytic_id"/>
+                <separator/>
+                <filter string="草稿" name="draft" domain="[('state','=','draft')]"/>
+                <filter string="已確認" name="confirm" domain="[('state','=','confirm')]"/>
+                <filter string="折舊中" name="depreciation" domain="[('state','=','depreciation')]"/>
+                <filter string="已銷帳" name="written_off" domain="[('state','=','written_off')]"/>
+                <filter string="折畢" name="done" domain="[('state','=','done')]"/>
+                <group expand="0" string="分組">
+                    <filter string="資產類別" name="category" context="{'group_by':'category_id'}"/>
+                    <filter string="保管部門" name="department" context="{'group_by':'account_analytic_id'}"/>
+                    <filter string="狀態" name="state" context="{'group_by':'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_asset_master_form_inherit_invoice_smart_button" model="ir.ui.view">
+        <field name="name">asset.master.form.inherit.invoice.smart.button</field>
+        <field name="model">asset.master</field>
+        <field name="inherit_id" ref="ji_accounting_asset.view_asset_master_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button type="object" name="open_related_invoice" class="oe_stat_button" icon="fa-file-invoice">
+                    <field name="invoice_id" widget="statinfo" string="來源帳款"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_asset_master_form_inherit_depreciation_smart_button" model="ir.ui.view">
+        <field name="name">asset.master.form.inherit.depreciation.smart.button</field>
+        <field name="model">asset.master</field>
+        <field name="inherit_id" ref="ji_accounting_asset.view_asset_master_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button type="object" name="action_view_depreciation" class="oe_stat_button" icon="fa-calculator">
+                    <field name="depreciation_count" widget="statinfo" string="折舊明細"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_asset_master_batch_confirm" model="ir.actions.server">
+        <field name="name">批次確認</field>
+        <field name="model_id" ref="model_asset_master"/>
+        <field name="binding_model_id" ref="model_asset_master"/>
+        <field name="state">code</field>
+        <field name="code">action = records.action_batch_confirm()</field>
+        <field name="binding_type">action</field>
+        </record>
+    </data>
+</odoo>

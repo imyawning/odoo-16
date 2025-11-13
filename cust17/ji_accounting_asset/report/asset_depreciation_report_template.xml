@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <template id="asset_depreciation_report_template">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div class="text-center">
+                            <h3>
+                                <span t-field="company.name"/>
+                            </h3>
+                            <h4>折舊明細表</h4>
+                            <p t-if="wizard">
+                                期間：<span t-esc="wizard.date_from"/> ~ <span t-esc="wizard.date_to"/>
+                            </p>
+                        </div>
+    
+                        <table class="table table-sm table-bordered" style="font-size: 9pt;">
+                            <thead>
+                                <tr class="text-center" style="background-color: #e9ecef;">
+                                    <th>折舊日期</th>
+                                    <th>財產編號</th>
+                                    <th>資產名稱</th>
+                                    <th>資產類別</th>
+                                    <th class="text-right">本期折舊</th>
+                                    <th class="text-right">累計折舊</th>
+                                    <th class="text-right">帳面價值</th>
+                                    <th>狀態</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="docs" t-as="line">
+                                    <tr>
+                                        <td class="text-center"><span t-field="line.date"/></td>
+                                        <td><span t-field="line.asset_code"/></td>
+                                        <td><span t-field="line.asset_name"/></td>
+                                        <td><span t-field="line.category_id"/></td>
+                                        <td class="text-right">
+                                            <span t-field="line.depreciation_amount" t-options='{"widget": "monetary", "display_currency": company.currency_id}'/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-field="line.accumulated_depreciation" t-options='{"widget": "monetary", "display_currency": company.currency_id}'/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-field="line.value" t-options='{"widget": "monetary", "display_currency": company.currency_id}'/>
+                                        </td>
+                                        <td class="text-center">
+                                            <t t-if="line.state == 'draft'">草稿</t>
+                                            <t t-if="line.state == 'posted'">已過帳</t>
+                                            <t t-if="line.state == 'reversed'">已沖銷</t>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                            <tfoot>
+                                <tr style="background-color: #f8f9fa; font-weight: bold;">
+                                    <td colspan="4" class="text-right">合計：</td>
+                                    <td class="text-right">
+                                        <span t-esc="'{:,.2f}'.format(total_depreciation or 0)"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-esc="'{:,.2f}'.format(total_accumulated or 0)"/>
+                                    </td>
+                                    <td colspan="2"></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </template>
+    
+        <record id="action_asset_depreciation_report_pdf" model="ir.actions.report">
+            <field name="name">折舊明細表</field>
+            <field name="model">asset.depreciation.report</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">ji_accounting_asset.asset_depreciation_report_template</field>
+            <field name="report_file">ji_accounting_asset.asset_depreciation_report_template</field>
+            <field name="binding_model_id" ref="model_asset_depreciation_report_wizard"/>
+            <field name="binding_type">report</field>
+            <field name="print_report_name">'折舊明細表'</field>
+        </record>
+    </data>
+</odoo>

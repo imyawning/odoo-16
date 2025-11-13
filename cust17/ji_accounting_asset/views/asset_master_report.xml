@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_asset_master_report_tree" model="ir.ui.view">
+            <field name="name">asset.master.report.tree</field>
+            <field name="model">asset.master.report</field>
+            <field name="arch" type="xml">
+                <tree string="財產目錄清冊" create="false" delete="false">
+                    <field name="category_id"/>
+                    <field name="asset_code"/>
+                    <field name="asset_name"/>
+                    <field name="account_date"/>
+                    <field name="depreciation_months"/>
+                    <field name="remaining_months"/>
+                    <field name="quantity"/>
+                    <field name="amount"/>
+                    <field name="ytd_depreciation"/>
+                    <field name="accumulated_depreciation"/>
+                    <field name="value"/>
+                    <field name="state"/>
+                    <field name="department_id"/>
+                    <field name="responsible_id"/>
+                    <field name="location"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_asset_master_report_search" model="ir.ui.view">
+            <field name="name">asset.master.report.search</field>
+            <field name="model">asset.master.report</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="category_id"/>
+                    <field name="asset_code"/>
+                    <field name="asset_name"/>
+                    <field name="department_id"/>
+                    <field name="responsible_id"/>
+                    <field name="state"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_asset_master_report_wizard" model="ir.ui.view">
+            <field name="name">asset.master.report.wizard.form</field>
+            <field name="model">asset.master.report.wizard</field>
+            <field name="arch" type="xml">
+                <form string="財產目錄清冊查詢">
+                    <group string="查詢條件" col="2" style="background-color:#e3f2fd;">
+                        <group>
+                            <field name="category_id" widget="many2many_tags"/>
+                            <field name="asset_id" widget="many2many_tags"/>
+                        </group>
+                        <group>
+                            <field name="department_id" widget="many2many_tags"/>
+                        </group>
+                    </group>
+                    <group string="條件" col="2" style="background-color:#f3f4f6; padding:8px; border-radius:6px; margin-top:10px;">
+                        <group>
+                            <field name="report_date"/>
+                            <field name="state"/>
+                        </group>
+                        <group>
+                            <field name="output_format" widget="radio" options="{'horizontal': true}"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button string="查詢" type="object" name="action_generate_report" class="btn-primary"/>
+                        <button string="取消" type="object" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

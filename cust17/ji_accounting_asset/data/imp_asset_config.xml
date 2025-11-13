@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <data noupdate="1">
+        <record id="asset_config_default" model="asset.config">
+            <field name="name">固定資產預設設定</field>
+        </record>
+    </data>
+</odoo>

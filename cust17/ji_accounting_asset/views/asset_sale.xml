@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_asset_sale_tree" model="ir.ui.view">
+            <field name="name">asset.sale.tree</field>
+            <field name="model">asset.sale</field>
+            <field name="arch" type="xml">
+                <tree string="資產出售作業">
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="buyer_id"/>
+                    <field name="total_amount" sum="出售總額"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_asset_sale_form" model="ir.ui.view">
+            <field name="name">asset.sale.form</field>
+            <field name="model">asset.sale</field>
+            <field name="arch" type="xml">
+                <form string="資產出售作業">
+                    <header>
+                        <button name="action_confirm" type="object" string="確認" class="btn-primary" invisible="state != 'draft'"/>
+                        <button name="action_draft" type="object" string="還原草稿" class="btn-secondary" invisible="state != 'confirm'"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirm"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" readonly="1"/>
+                                <field name="date" readonly="state != 'draft'"/>
+                                <field name="buyer_id" readonly="state != 'draft'"/>
+                            </group>
+                            <group>
+                                <field name="notes" readonly="state != 'draft'"/>
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <page string="出售明細">
+                                <field name="line_ids" readonly="state == 'confirm'">
+                                    <tree editable="bottom">
+                                        <field name="asset_id" required="1"/>
+                                        <field name="name" readonly="1"/>
+                                        <field name="original_amount" readonly="1"/>
+                                        <field name="accumulated_depreciation" readonly="1"/>
+                                        <field name="book_value" readonly="1"/>
+                                        <field name="sale_amount"/>
+                                        <field name="gain_loss" readonly="1"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+
+                        <group class="oe_subtotal_footer oe_right">
+                            <field name="total_amount" widget="monetary" readonly="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_asset_sale_search" model="ir.ui.view">
+            <field name="name">asset.sale.search</field>
+            <field name="model">asset.sale</field>
+            <field name="arch" type="xml">
+                <search string="資產出售作業">
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="buyer_id"/>
+                    <field name="state"/>
+                </search>
+            </field>
+        </record>
+    </data>
+</odoo>

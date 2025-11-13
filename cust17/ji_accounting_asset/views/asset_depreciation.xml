@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_asset_depreciation_tree" model="ir.ui.view">
+            <field name="name">asset.depreciation.tree</field>
+            <field name="model">asset.depreciation</field>
+            <field name="arch" type="xml">
+                <tree string="折舊作業明細">
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="asset_id"/>
+                    <field name="category_id"/>
+                    <field name="depreciation_amount"/>
+                    <field name="accumulated_depreciation"/>
+                    <field name="value"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_asset_depreciation_form" model="ir.ui.view">
+            <field name="name">asset.depreciation.form</field>
+            <field name="model">asset.depreciation</field>
+            <field name="arch" type="xml">
+                <form string="折舊作業明細">
+                    <header>
+                        <button name="action_post" type="object" string="過帳" class="btn-primary" invisible="state != 'draft'"/>
+                        <button name="action_reverse" type="object" string="沖銷" class="btn-secondary" invisible="state != 'posted'"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="date"/>
+                                <field name="asset_id"/>
+                                <field name="category_id"/>
+                            </group>
+                            <group>
+                                <field name="depreciation_amount"/>
+                                <field name="accumulated_depreciation"/>
+                                <field name="ytd_depreciation"/>
+                                <field name="value"/>
+                                <field name="remaining_months"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="debit_account_id"/>
+                                <field name="credit_account_id"/>
+                            </group>
+                            <group>
+                                <field name="move_id"/>
+                            </group>
+                        </group>
+                        <field name="notes"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

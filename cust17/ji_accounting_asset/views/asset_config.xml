@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_asset_config_form" model="ir.ui.view">
+            <field name="name">asset.config.form</field>
+            <field name="model">asset.config</field>
+            <field name="arch" type="xml">
+                <form string="固定資產設定">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="asset_close_date"/>
+                                <field name="depreciation_start_type"/>
+                                <field name="depreciate_in_disposal"/>
+                            </group>
+                            <group>
+                                <field name="asset_code_method"/>
+                                <field name="asset_code_padding"/>
+                                <field name="loss_account_id"/>
+                                <field name="asset_journal_id"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

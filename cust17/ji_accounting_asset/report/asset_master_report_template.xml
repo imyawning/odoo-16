@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <template id="asset_master_report_template">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div class="text-center">
+                            <h3>
+                                <span t-field="company.name"/>
+                            </h3>
+                            <h4>財產目錄清冊</h4>
+                            <p t-if="report_date">
+                                報表日期：<span t-esc="report_date.strftime('%Y-%m-%d')"/>
+                            </p>
+                        </div>
+
+                        <div class="row mt-3 mb-3" style="font-size: 10pt;">
+                            <div class="col-12">
+                                <strong>查詢條件：</strong>
+                                <span t-if="category">資產類別：<t t-esc="category"/> | </span>
+                                <span t-if="asset">財產編號：<t t-esc="asset"/> | </span>
+                                <span t-if="department">保管部門：<t t-esc="department"/> | </span>
+                                <span t-if="state">狀態：<t t-esc="state"/></span>
+                            </div>
+                        </div>
+
+                        <table class="table table-sm table-bordered" style="font-size: 9pt;">
+                            <thead>
+                                <tr class="text-center" style="background-color: #e9ecef;">
+                                    <th>資產群組</th>
+                                    <th>資產類別</th>
+                                    <th>財產編號</th>
+                                    <th>財產名稱</th>
+                                    <th>入帳日期</th>
+                                    <th>耐用月數</th>
+                                    <th>剩餘月數</th>
+                                    <th>數量</th>
+                                    <th class="text-right">取得金額</th>
+                                    <th class="text-right">本年折舊</th>
+                                    <th class="text-right">累計折舊</th>
+                                    <th class="text-right">帳面價值</th>
+                                    <th>狀態</th>
+                                    <th>保管部門</th>
+                                    <th>保管人</th>
+                                    <th>存放位置</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="docs" t-as="line">
+                                    <tr>
+                                        <td><span t-field="line.group"/></td>
+                                        <td><span t-field="line.category_id"/></td>
+                                        <td><span t-field="line.asset_code"/></td>
+                                        <td><span t-field="line.asset_name"/></td>
+                                        <td class="text-center">
+                                            <span t-if="line.account_date" t-esc="line.account_date.strftime('%Y-%m-%d')"/>
+                                        </td>
+                                        <td class="text-center"><span t-field="line.depreciation_months"/></td>
+                                        <td class="text-center"><span t-field="line.remaining_months"/></td>
+                                        <td class="text-center"><span t-field="line.quantity"/></td>
+                                        <td class="text-right">
+                                            <span t-field="line.amount" t-options='{"widget": "monetary", "display_currency": company.currency_id}'/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-field="line.ytd_depreciation" t-options='{"widget": "monetary", "display_currency": company.currency_id}'/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-field="line.accumulated_depreciation" t-options='{"widget": "monetary", "display_currency": company.currency_id}'/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-field="line.value" t-options='{"widget": "monetary", "display_currency": company.currency_id}'/>
+                                        </td>
+                                        <td class="text-center">
+                                            <t t-if="line.state == 'draft'">草稿</t>
+                                            <t t-if="line.state == 'confirm'">確認</t>
+                                            <t t-if="line.state == 'depreciation'">折舊中</t>
+                                            <t t-if="line.state == 'done'">折畢</t>
+                                            <t t-if="line.state == 'written_off'">已銷帳</t>
+                                        </td>
+                                        <td><span t-field="line.department_id"/></td>
+                                        <td><span t-field="line.responsible_id"/></td>
+                                        <td><span t-field="line.location"/></td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+        <record id="action_asset_master_report_pdf" model="ir.actions.report">
+            <field name="name">財產目錄清冊</field>
+            <field name="model">asset.master.report</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">ji_accounting_asset.asset_master_report_template</field>
+            <field name="print_report_name">'財產目錄清冊'</field>
+        </record>
+    </data>
+</odoo>
