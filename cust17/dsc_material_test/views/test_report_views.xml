@@ -24,17 +24,19 @@
             <form string="材料測試報告">
                 <header>
                     <button name="action_confirm" string="確認" type="object"
-                            invisible="state != 'draft'" class="oe_highlight"/>
+                            attrs="{'invisible': [('state', '!=', 'draft')]}" class="oe_highlight"/>
 
                     <button name="action_cancel" string="取消" type="object"
-                            invisible="state not in ['draft', 'confirmed']"/>
+                            attrs="{'invisible': [('state', 'not in', ['draft', 'confirmed'])]}"/>
 
                     <button name="action_draft" string="設為草稿" type="object"
-                            invisible="state != 'cancelled'"/>
+                            attrs="{'invisible': [('state', '!=', 'cancelled')]}"/>
 
                     <field name="state" widget="statusbar" statusbar_visible="draft,confirmed"/>
                 </header>
                 <sheet>
+                    <field name="state" invisible="1"/>
+
                     <div class="oe_title">
                         <h1>
                             <field name="name" string="報告編號" readonly="1"/>
@@ -42,24 +44,43 @@
                     </div>
                     <group>
                         <group>
-                            <field name="factory_type_id" string="廠別" readonly="state == 'confirmed'"/>
-                            <field name="product_id" string="材料名稱" readonly="state == 'confirmed'"/>
-                            <field name="template_id" string="樣板" readonly="state == 'confirmed'"/>
-                            <field name="color" string="顏色" readonly="state == 'confirmed'"/>
-                            <field name="po_number" string="訂單號碼" readonly="state == 'confirmed'"/>
+                            <field name="factory_type_id" string="廠別" 
+                                   attrs="{'readonly': [('state', '=', 'confirmed')]}"/>
+                            
+                            <field name="product_id" string="材料名稱" 
+                                   attrs="{'readonly': [('state', '=', 'confirmed')]}"/>
+
+                            <field name="template_id" string="樣板" 
+                                   attrs="{'readonly': [('state', '=', 'confirmed')]}"/>
+
+                            <field name="color" string="顏色" 
+                                   attrs="{'readonly': [('state', '=', 'confirmed')]}"/>
+                            
+                            <field name="po_number" string="訂單號碼" 
+                                   attrs="{'readonly': [('state', '=', 'confirmed')]}"/>
                         </group>
                         <group>
-                            <field name="factory_id" string="廠商" context="{'default_is_company': True, 'default_supplier_rank': 1}"
-                                   readonly="state == 'confirmed'"/>
-                            <field name="tester_id" string="測試員" readonly="state == 'confirmed'"/>
-                            <field name="date_tested" string="測試日期" readonly="state == 'confirmed'"/>
-                            <field name="is_production" string="量產材料" readonly="state == 'confirmed'"/>
-                            <field name="is_development" string="開發/新產品" readonly="state == 'confirmed'"/>
+                            <field name="factory_id" string="廠商" 
+                                   context="{'default_is_company': True, 'default_supplier_rank': 1}" 
+                                   attrs="{'readonly': [('state', '=', 'confirmed')]}"/>
+                            
+                            <field name="tester_id" string="測試員" 
+                                   attrs="{'readonly': [('state', '=', 'confirmed')]}"/>
+                            
+                            <field name="date_tested" string="測試日期" 
+                                   attrs="{'readonly': [('state', '=', 'confirmed')]}"/>
+                            
+                            <field name="is_production" string="量產材料" 
+                                   attrs="{'readonly': [('state', '=', 'confirmed')]}"/>
+                            
+                            <field name="is_development" string="開發/新產品" 
+                                   attrs="{'readonly': [('state', '=', 'confirmed')]}"/>
                         </group>
                     </group>
 
                     <separator/>
-                    <field name="test_line_ids" nolabel="1" readonly="state == 'confirmed'">
+                    <field name="test_line_ids" nolabel="1" 
+                           attrs="{'readonly': [('state', '=', 'confirmed')]}">
                         <tree editable="bottom" create="1" delete="1">
                             <control>
                                 <create name="add_line_control" string="新增資料行"/>
@@ -83,7 +104,8 @@
                     </field>
 
                     <separator string="備註"/>
-                    <field name="comments" nolabel="1" placeholder="請輸入備註..." readonly="state == 'confirmed'"/>
+                    <field name="comments" nolabel="1" placeholder="請輸入備註..." 
+                           attrs="{'readonly': [('state', '=', 'confirmed')]}"/>
                 </sheet>
                 <div class="oe_chatter">
                     <field name="message_follower_ids" widget="mail_followers"/>
@@ -92,6 +114,7 @@
             </form>
         </field>
     </record>
+
 
     <record id="view_material_test_report_search" model="ir.ui.view">
         <field name="name">dsc.material.test.report.search</field>
