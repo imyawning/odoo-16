@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="report_material_test" model="ir.actions.report">
+        <field name="name">材料測試報告</field>
+
+        <field name="model">dsc.material.test.report</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">dsc_material_test.report_material_test_document</field>
+        <field name="report_file">dsc_material_test.report_material_test_document</field>
+
+        <field name="print_report_name">'材料測試報告-%s' % (object.name)</field>
+
+        <field name="binding_model_id" ref="model_dsc_material_test_report"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!--    <data noupdate="1">-->
+<!--        <record id="uom_category_hardness" model="uom.category">-->
+<!--            <field name="name">測試-硬度</field>-->
+<!--        </record>-->
+
+<!--        <record id="uom_asker_c" model="uom.uom">-->
+<!--            <field name="name">ASKER-C</field>-->
+<!--            <field name="category_id" ref="uom_category_hardness"/>-->
+<!--            <field name="uom_type">reference</field>-->
+<!--            <field name="rounding">0.01</field>-->
+<!--        </record>-->
+
+<!--        <record id="uom_shore_000" model="uom.uom">-->
+<!--            <field name="name">Shore 000</field>-->
+<!--            <field name="category_id" ref="uom_category_hardness"/>-->
+<!--            <field name="uom_type">bigger</field>-->
+<!--            <field name="factor_inv">1.0</field>-->
+<!--            <field name="rounding">0.01</field>-->
+<!--        </record>-->
+
+<!--        <record id="uom_asker_f" model="uom.uom">-->
+<!--            <field name="name">ASKER-F</field>-->
+<!--            <field name="category_id" ref="uom_category_hardness"/>-->
+<!--            <field name="uom_type">bigger</field>-->
+<!--            <field name="factor_inv">1.0</field>-->
+<!--            <field name="rounding">0.01</field>-->
+<!--        </record>-->
+
+<!--        <record id="uom_category_pressure" model="uom.category">-->
+<!--            <field name="name">測試-強度(Kg/cm²)</field>-->
+<!--        </record>-->
+
+<!--        <record id="uom_kg_cm2" model="uom.uom">-->
+<!--            <field name="name">Kg/cm²</field>-->
+<!--            <field name="category_id" ref="uom_category_pressure"/>-->
+<!--            <field name="uom_type">reference</field>-->
+<!--            <field name="rounding">0.01</field>-->
+<!--        </record>-->
+
+<!--        <record id="uom_category_linear_strength" model="uom.category">-->
+<!--            <field name="name">測試-撕裂(Kg/cm)</field>-->
+<!--        </record>-->
+
+<!--        <record id="uom_kg_cm" model="uom.uom">-->
+<!--            <field name="name">Kg/cm</field>-->
+<!--            <field name="category_id" ref="uom_category_linear_strength"/>-->
+<!--            <field name="uom_type">reference</field>-->
+<!--            <field name="rounding">0.01</field>-->
+<!--        </record>-->
+
+<!--        <record id="uom_category_percent" model="uom.category">-->
+<!--            <field name="name">測試-百分比</field>-->
+<!--        </record>-->
+
+<!--        <record id="uom_percent" model="uom.uom">-->
+<!--            <field name="name">%</field>-->
+<!--            <field name="category_id" ref="uom_category_percent"/>-->
+<!--            <field name="uom_type">reference</field>-->
+<!--            <field name="rounding">0.01</field>-->
+<!--        </record>-->
+
+<!--        <record id="uom_category_density" model="uom.category">-->
+<!--            <field name="name">測試-密度</field>-->
+<!--        </record>-->
+
+<!--         <record id="uom_g_cm3" model="uom.uom">-->
+<!--            <field name="name">g/cm³</field>-->
+<!--            <field name="category_id" ref="uom_category_density"/>-->
+<!--            <field name="uom_type">reference</field>-->
+<!--            <field name="rounding">0.01</field>-->
+<!--        </record>-->
+<!--    </data>-->
+</odoo>

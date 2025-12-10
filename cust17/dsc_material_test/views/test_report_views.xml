@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_material_test_report_tree" model="ir.ui.view">
+        <field name="name">dsc.material.test.report.tree</field>
+        <field name="model">dsc.material.test.report</field>
+        <field name="arch" type="xml">
+            <tree string="材料測試報告" decoration-success="state=='confirmed'" decoration-muted="state=='cancelled'">
+                <field name="name" string="報告編號"/>
+                <field name="date_tested" string="測試日期"/>
+                <field name="factory_id" string="廠商"/>
+                <field name="factory_type_id" string="廠別"/>
+                <field name="product_id" string="材料名稱"/>
+                <field name="color" string="顏色"/>
+                <field name="tester_id" string="測試員"/>
+                <field name="state" string="狀態"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_material_test_report_form" model="ir.ui.view">
+        <field name="name">dsc.material.test.report.form</field>
+        <field name="model">dsc.material.test.report</field>
+        <field name="arch" type="xml">
+            <form string="材料測試報告">
+                <header>
+                    <button name="action_confirm" string="確認" type="object"
+                            invisible="state != 'draft'" class="oe_highlight"/>
+
+                    <button name="action_cancel" string="取消" type="object"
+                            invisible="state not in ['draft', 'confirmed']"/>
+
+                    <button name="action_draft" string="設為草稿" type="object"
+                            invisible="state != 'cancelled'"/>
+
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirmed"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" string="報告編號" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="factory_type_id" string="廠別" readonly="state == 'confirmed'"/>
+                            <field name="product_id" string="材料名稱" readonly="state == 'confirmed'"/>
+                            <field name="template_id" string="樣板" readonly="state == 'confirmed'"/>
+                            <field name="color" string="顏色" readonly="state == 'confirmed'"/>
+                            <field name="po_number" string="訂單號碼" readonly="state == 'confirmed'"/>
+                        </group>
+                        <group>
+                            <field name="factory_id" string="廠商" context="{'default_is_company': True, 'default_supplier_rank': 1}"
+                                   readonly="state == 'confirmed'"/>
+                            <field name="tester_id" string="測試員" readonly="state == 'confirmed'"/>
+                            <field name="date_tested" string="測試日期" readonly="state == 'confirmed'"/>
+                            <field name="is_production" string="量產材料" readonly="state == 'confirmed'"/>
+                            <field name="is_development" string="開發/新產品" readonly="state == 'confirmed'"/>
+                        </group>
+                    </group>
+
+                    <separator/>
+                    <field name="test_line_ids" nolabel="1" readonly="state == 'confirmed'">
+                        <tree editable="bottom" create="1" delete="1">
+                            <control>
+                                <create name="add_line_control" string="新增資料行"/>
+                            </control>
+                            <field name="sequence" widget="handle"/>
+
+                            <field name="test_item_id" string="測試項目" width="50px"/>
+                            <field name="method" string="方法" width="50px" options="{'no_create': True}" domain="[('config_line_ids.test_item_id', '=', test_item_id)]"/>
+                            <field name="unit" string="單位" width="50px" options="{'no_create': True}"/>
+                            <field name="spec" string="規格" width="50px"/>
+
+                            <field name="test_1" string="測試1" width="50px"/>
+                            <field name="test_2" string="測試2" width="50px"/>
+                            <field name="test_3" string="測試3" width="50px"/>
+                            <field name="test_4" string="測試4" width="50px"/>
+                            <field name="test_5" string="測試5" width="50px"/>
+
+                            <field name="average" string="平均" width="50px"/>
+                            <field name="result" string="判定" width="50px" decoration-success="result=='pass'" decoration-danger="result=='fail'"/>
+                        </tree>
+                    </field>
+
+                    <separator string="備註"/>
+                    <field name="comments" nolabel="1" placeholder="請輸入備註..." readonly="state == 'confirmed'"/>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_material_test_report_search" model="ir.ui.view">
+        <field name="name">dsc.material.test.report.search</field>
+        <field name="model">dsc.material.test.report</field>
+        <field name="arch" type="xml">
+            <search string="搜尋材料測試報告">
+                <field name="name" string="報告編號"/>
+                <field name="product_id" string="材料名稱"/>
+                <field name="color" string="顏色"/>
+                <field name="tester_id" string="測試員"/>
+                <field name="factory_id" string="廠商"/>
+                <filter string="草稿" name="draft" domain="[('state','=','draft')]"/>
+                <filter string="已確認" name="confirmed" domain="[('state','=','confirmed')]"/>
+                <group expand="0" string="群組">
+                    <filter string="狀態" name="group_state" context="{'group_by':'state'}"/>
+                    <filter string="測試員" name="group_tester" context="{'group_by':'tester_id'}"/>
+                    <filter string="測試日期" name="group_date" context="{'group_by':'date_tested'}"/>
+                    <filter string="產品" name="group_product" context="{'group_by':'product_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_material_test_report" model="ir.actions.act_window">
+        <field name="name">材料測試報告</field>
+        <field name="res_model">dsc.material.test.report</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                建立第一份材料測試報告
+            </p>
+        </field>
+    </record>
+</odoo>

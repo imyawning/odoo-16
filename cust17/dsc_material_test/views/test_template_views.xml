@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_dsc_material_test_template_tree" model="ir.ui.view">
+        <field name="name">dsc.material.test.template.tree</field>
+        <field name="model">dsc.material.test.template</field>
+        <field name="arch" type="xml">
+            <tree string="樣板">
+                <field name="name"/>
+                <field name="product_categ_id"/>
+                <field name="is_production"/>
+                <field name="is_development"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_dsc_material_test_template_form" model="ir.ui.view">
+        <field name="name">dsc.material.test.template.form</field>
+        <field name="model">dsc.material.test.template</field>
+        <field name="arch" type="xml">
+            <form string="測試樣板">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1>
+                            <field name="name" placeholder="例如：NIKE..."/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <!-- 【新增/確認】對應產品類別欄位 -->
+                            <field name="product_categ_id" string="產品類別"/>
+                            <field name="is_production"/>
+                            <field name="is_development"/>
+                        </group>
+                    </group>
+
+                    <field name="line_ids">
+                        <tree editable="bottom">
+                            <control>
+                                <create name="add_line_control" string="加入資料行"/>
+                            </control>
+                            <field name="sequence" widget="handle"/>
+                            <field name="test_item_id" width="20%"/>
+                            <field name="method_id" string="方法" width="20%"
+                                   domain="[('config_line_ids.test_item_id', '=', test_item_id)]"/>
+                            <field name="unit_id" string="單位" width="10%"/>
+                            <field name="spec" string="規格標準"/>
+                        </tree>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_dsc_material_test_template_real" model="ir.actions.act_window">
+        <field name="name">樣板</field>
+        <field name="res_model">dsc.material.test.template</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

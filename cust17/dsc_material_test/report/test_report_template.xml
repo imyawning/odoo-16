@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_material_test_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div class="text-center" style="margin-bottom: 20px;">
+                            <h3 style="margin: 0;">DSC 材料物性測試報告</h3>
+                            <h4 style="margin: 0;">DSC Material Product Test Report</h4>
+                        </div>
+
+                        <div class="text-right" style="margin-bottom: 10px;">
+                            <strong>Report NO:</strong> <span t-field="o.name"/>
+                        </div>
+
+                        <table class="table table-bordered" style="margin-bottom: 15px;">
+                            <tbody>
+                                <tr>
+                                    <td style="width: 15%; background-color: #f5f5f5;"><strong>廠別:</strong></td>
+                                    <td style="width: 35%;"><span t-field="o.factory_type_id.display_name"/></td>
+                                    <td style="width: 15%; background-color: #f5f5f5;"><strong>廠商:</strong></td>
+                                    <td style="width: 35%;"><span t-field="o.factory_id.name"/></td>
+                                </tr>
+
+                                <tr>
+                                    <td style="background-color: #f5f5f5;"><strong>材料名稱:</strong></td>
+                                    <td><span t-field="o.product_id.name"/></td>
+                                    <td style="background-color: #f5f5f5;"><strong>測試員:</strong></td>
+                                    <td><span t-field="o.tester_id.name"/></td>
+                                </tr>
+
+                                <tr>
+                                    <td style="background-color: #f5f5f5;"><strong>樣板:</strong></td>
+                                    <td><span t-field="o.template_id.name"/></td>
+                                    <td style="background-color: #f5f5f5;"><strong>測試日期:</strong></td>
+                                    <td><span t-field="o.date_tested"/></td>
+                                </tr>
+
+                                <tr>
+                                    <td style="background-color: #f5f5f5;"><strong>顏色:</strong></td>
+                                    <td><span t-field="o.color"/></td>
+                                    <td style="background-color: #f5f5f5;"><strong>量產材料:</strong></td>
+                                    <td>
+                                        <span t-if="o.is_production" class="fa fa-check-square"/>
+                                        <span t-else="" class="fa fa-square-o"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="background-color: #f5f5f5;"><strong>訂單號碼:</strong></td>
+                                    <td><span t-field="o.po_number"/></td>
+                                    <td style="background-color: #f5f5f5;"><strong>開發/新產品:</strong></td>
+                                    <td>
+                                        <span t-if="o.is_development" class="fa fa-check-square"/>
+                                        <span t-else="" class="fa fa-square-o"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <table class="table table-bordered table-sm">
+                            <thead>
+                                <tr style="background-color: #f0f0f0;">
+                                    <th style="width: 18%;">測試項目</th>
+                                    <th style="width: 12%;">方法</th>
+                                    <th style="width: 10%;">單位</th>
+                                    <th style="width: 12%;">標準規格</th>
+                                    <th style="width: 18%;">測試結果</th>
+                                    <th style="width: 12%;">平均值</th>
+                                    <th style="width: 10%;">PASS/FAIL</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-set="lines" t-value="o.test_line_ids"/>
+                                <t t-foreach="lines" t-as="line">
+                                    <tr>
+                                        <td><span t-field="line.test_item_id.name"/></td>
+                                        <td><span t-esc="line.method.name if line.method else ''"/></td>
+                                        <td><span t-esc="line.unit.name if line.unit else ''"/></td>
+                                        <td><span t-field="line.spec"/></td>
+                                        <td><span t-field="line.test_result"/></td>
+                                        <td><span t-field="line.average"/></td>
+                                        <td><span t-field="line.result"/></td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+
+                        <div style="margin-top: 15px;">
+                            <strong>COMMENTS(備註):</strong><br/>
+                            <span t-field="o.comments"/>
+                        </div>
+
+                        <div class="row" style="margin-top: 40px;">
+                            <div class="col-4 text-center">
+                                <strong>審核:</strong>_______________
+                            </div>
+                            <div class="col-4 text-center">
+                                <strong>生產主管:</strong>_______________
+                            </div>
+                            <div class="col-4 text-center">
+                                <strong>品管:</strong>_______________
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

@@ -1,3 +1,5 @@
 # -*- coding: utf-8 -*-
-
-from . import material_test_report
+from . import test_config
+from . import test_template
+from . import test_line
+from . import test_report

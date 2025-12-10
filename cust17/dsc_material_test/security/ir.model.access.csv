@@ -1,3 +1,14 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_material_test_report_user,access.material.test.report.user,model_dsc_material_test_report,base.group_user,1,1,1,0
 access_material_test_report_manager,access.material.test.report.manager,model_dsc_material_test_report,base.group_system,1,1,1,1
+access_material_test_unified_user,access.material.test.unified.user,model_dsc_material_test_unified,base.group_user,1,1,1,1
+access_test_config_user_read,Material Test Config User Read,model_dsc_material_test_config,base.group_user,1,1,1,1
+access_test_config_line_user_read,Material Test Config Line User Read,model_dsc_material_test_config_line,base.group_user,1,0,0,0
+access_test_config_manager,Material Test Config Manager,model_dsc_material_test_config,base.group_system,1,1,1,1
+access_test_config_line_manager,Material Test Config Line Manager,model_dsc_material_test_config_line,base.group_system,1,1,1,1
+access_material_test_item_user,access.material.test.item.user,model_dsc_material_test_item,base.group_user,1,0,0,0
+access_material_test_item_manager,access.material.test.item.manager,model_dsc_material_test_item,base.group_system,1,1,1,1
+access_material_test_template_user,access.material.test.template.user,model_dsc_material_test_template,base.group_user,1,1,1,1
+access_material_test_template_line_user,access.material.test.template.line.user,model_dsc_material_test_template_line,base.group_user,1,1,1,1
+access_material_test_factory_type_user,access.material.test.factory.type.user,model_dsc_material_test_factory_type,base.group_user,1,0,0,0
+access_material_test_factory_type_manager,access.material.test.factory.type.manager,model_dsc_material_test_factory_type,base.group_system,1,1,1,1

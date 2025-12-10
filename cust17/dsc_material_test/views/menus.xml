@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_material_test_root"
+              name="DSC材料測試"
+              sequence="10"/>
+
+    <menuitem id="menu_material_test_report"
+              name="測試報告"
+              parent="menu_material_test_root"
+              action="action_material_test_report"
+              sequence="10"/>
+
+    <menuitem id="menu_dsc_material_test_config_parent"
+              name="配置"
+              parent="menu_material_test_root"
+              sequence="100"
+              groups="base.group_system"/>
+
+    <menuitem id="menu_dsc_material_test_template_cat"
+              name="樣板"
+              parent="menu_dsc_material_test_config_parent"
+              sequence="10"/>
+
+            <menuitem id="menu_dsc_material_test_template_real_action"
+                      name="樣板"
+                      parent="menu_dsc_material_test_template_cat"
+                      action="action_dsc_material_test_template_real"
+                      sequence="10"/>
+
+    <menuitem id="menu_dsc_material_test_basic_cat"
+              name="基本資料"
+              parent="menu_dsc_material_test_config_parent"
+              sequence="20"/>
+
+            <menuitem id="menu_dsc_material_test_factory_type_action"
+                      name="廠別"
+                      parent="menu_dsc_material_test_basic_cat"
+                      action="action_dsc_material_test_factory_type"
+                      sequence="15"/>
+
+            <menuitem id="menu_dsc_material_test_template_action"
+                      name="方法"
+                      parent="menu_dsc_material_test_basic_cat"
+                      action="action_dsc_material_test_template_all"
+                      sequence="20"/>
+
+            <menuitem id="menu_dsc_material_test_method_only_action"
+                      name="測試項目"
+                      parent="menu_dsc_material_test_basic_cat"
+                      action="action_dsc_material_test_item"
+                      sequence="25"/>
+
+            <menuitem id="menu_dsc_material_test_uom_categ_action"
+                      name="計量單位類別"
+                      parent="menu_dsc_material_test_basic_cat"
+                      action="uom.product_uom_categ_form_action"
+                      sequence="30"/>
+</odoo>
