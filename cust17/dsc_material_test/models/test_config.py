@@ -22,6 +22,8 @@ class MaterialTestConfigLine(models.Model):
 
     config_id = fields.Many2one('dsc.material.test.config', string='品牌', ondelete='cascade')
 
+    product_categ_id = fields.Many2one('product.category', string='產品類別')
+
     name = fields.Char(string='說明', compute='_compute_name', store=True, required=False)
 
     sequence = fields.Integer(string='Sequence', default=10)

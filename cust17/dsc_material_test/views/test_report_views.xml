@@ -115,7 +115,6 @@
         </field>
     </record>
 
-
     <record id="view_material_test_report_search" model="ir.ui.view">
         <field name="name">dsc.material.test.report.search</field>
         <field name="model">dsc.material.test.report</field>

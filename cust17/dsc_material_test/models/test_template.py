@@ -43,6 +43,19 @@ class MaterialTestTemplateLine(models.Model):
             if not self.unit_id and len(allowed_units) == 1:
                 self.unit_id = allowed_units[0]
 
+        product_categ = self.template_id.product_categ_id
+        if product_categ:
+            config_line = self.env['dsc.material.test.config.line'].search([
+                ('test_item_id', '=', self.test_item_id.id),
+                ('product_categ_id', '=', product_categ.id)
+            ], limit=1)
+
+            if config_line:
+                self.method_id = config_line.config_id
+                if config_line.unit:
+                    self.unit_id = config_line.unit
+                self.spec = config_line.spec
+
         valid_config_lines = self.env['dsc.material.test.config.line'].search([
             ('test_item_id', '=', self.test_item_id.id)
         ])

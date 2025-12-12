@@ -38,6 +38,7 @@
         <field name="model">dsc.material.test.config.line</field>
         <field name="arch" type="xml">
             <tree string="方法設定" editable="bottom">
+                <field name="product_categ_id" string="產品類別" width="15%"/>
                 <field name="test_item_id" string="測試項目" width="20%"/>
                 <field name="config_id" string="方法" width="20%"/>
                 <field name="unit" string="單位" width="10%"/>

@@ -109,6 +109,22 @@ class UnifiedTestLine(models.Model):
             if not self.unit and len(allowed_units) == 1:
                 self.unit = allowed_units[0]
 
+        product_categ = False
+        if self.report_id and self.report_id.product_id:
+            product_categ = self.report_id.product_id.categ_id
+
+        if product_categ:
+            config_line = self.env['dsc.material.test.config.line'].search([
+                ('test_item_id', '=', self.test_item_id.id),
+                ('product_categ_id', '=', product_categ.id)
+            ], limit=1)
+
+            if config_line:
+                self.method = config_line.config_id
+                if config_line.unit:
+                    self.unit = config_line.unit
+                self.spec = config_line.spec
+
         valid_config_lines = self.env['dsc.material.test.config.line'].search([
             ('test_item_id', '=', self.test_item_id.id)
         ])
