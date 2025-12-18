@@ -1,6 +1,14 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields, api
 
+class MaterialTestReportBomLine(models.Model):
+    _name = 'dsc.material.test.report.bom.line'
+    _description = 'Material Test Report BoM Line'
+
+    report_id = fields.Many2one('dsc.material.test.report', string='Report', ondelete='cascade')
+    product_id = fields.Many2one('product.product', string='組件', required=True)
+    product_qty = fields.Float(string='數量', default=1.0)
+    product_uom_id = fields.Many2one('uom.uom', string='產品量度單位')
 
 class MaterialTestReport(models.Model):
     _name = 'dsc.material.test.report'
@@ -37,14 +45,39 @@ class MaterialTestReport(models.Model):
 
     test_line_ids = fields.One2many('dsc.material.test.unified', 'report_id', string='測試細項')
 
+    # === 物料清單相關欄位 ===
+    bom_id = fields.Many2one('mrp.bom', string='物料清單', compute='_compute_bom_id', store=True)
+    
+    # 可編輯的物料清單明細 (One2many)
+    report_bom_line_ids = fields.One2many('dsc.material.test.report.bom.line', 'report_id', string='物料清單明細')
+
+    # === 修正重點：必須包含這個計算函式 ===
+    @api.depends('product_id')
+    def _compute_bom_id(self):
+        for report in self:
+            bom = False
+            if report.product_id:
+                # 搜尋該產品對應的 BoM
+                bom = self.env['mrp.bom'].search([
+                    '|',
+                    ('product_id', '=', report.product_id.id),
+                    '&',
+                    ('product_tmpl_id', '=', report.product_id.product_tmpl_id.id),
+                    ('product_id', '=', False)
+                ], limit=1, order='sequence, id')
+            report.bom_id = bom
+
     @api.onchange('product_id')
     def _onchange_product_id(self):
         self.template_id = False
+        # 清空舊的明細
+        self.report_bom_line_ids = [(5, 0, 0)]
+        
         if not self.product_id:
             return
 
+        # 1. 處理樣板
         product_categ = self.product_id.categ_id
-
         if product_categ:
             template = self.env['dsc.material.test.template'].search([
                 ('product_categ_id', '=', product_categ.id)
@@ -52,6 +85,26 @@ class MaterialTestReport(models.Model):
 
             if template:
                 self.template_id = template.id
+
+        # 2. 處理物料清單 (自動帶入資料到可編輯區塊)
+        # 重新搜尋一次 BoM
+        bom = self.env['mrp.bom'].search([
+            '|',
+            ('product_id', '=', self.product_id.id),
+            '&',
+            ('product_tmpl_id', '=', self.product_id.product_tmpl_id.id),
+            ('product_id', '=', False)
+        ], limit=1, order='sequence, id')
+
+        if bom:
+            new_lines = []
+            for line in bom.bom_line_ids:
+                new_lines.append((0, 0, {
+                    'product_id': line.product_id.id,
+                    'product_qty': line.product_qty,
+                    'product_uom_id': line.product_uom_id.id,
+                }))
+            self.report_bom_line_ids = new_lines
 
     @api.onchange('template_id')
     def _onchange_template_id(self):
@@ -90,5 +143,4 @@ class MaterialTestReport(models.Model):
         self.state = 'draft'
 
     def action_print_report(self):
-        # 這裡使用 Python 程式碼來呼叫報表，避開 XML 解析錯誤
         return self.env.ref('dsc_material_test.report_material_test').report_action(self)

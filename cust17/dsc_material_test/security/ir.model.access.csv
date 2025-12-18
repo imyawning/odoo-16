@@ -16,3 +16,5 @@ access_material_test_factory_type_user,access.material.test.factory.type.user,mo
 access_material_test_factory_type_manager,access.material.test.factory.type.manager,model_dsc_material_test_factory_type,dsc_material_test.group_material_test_manager,1,1,1,1
 access_uom_category_user,uom.category.user,uom.model_uom_category,dsc_material_test.group_material_test_user,1,0,0,0
 access_uom_category_manager,uom.category.manager,uom.model_uom_category,dsc_material_test.group_material_test_manager,1,1,1,1
+access_material_test_report_bom_line_user,access.material.test.report.bom.line.user,model_dsc_material_test_report_bom_line,dsc_material_test.group_material_test_user,1,1,1,1
+access_material_test_report_bom_line_manager,access.material.test.report.bom.line.manager,model_dsc_material_test_report_bom_line,dsc_material_test.group_material_test_manager,1,1,1,1

@@ -9,6 +9,16 @@
               parent="menu_material_test_root"
               action="action_material_test_report"
               sequence="10"/>
+    <menuitem id="menu_material_test_product_cat"
+              name="產品"
+              parent="menu_material_test_root"
+              sequence="50"/>
+
+    <menuitem id="menu_material_test_bom_action"
+              name="物料清單"
+              parent="menu_material_test_product_cat"
+              action="mrp.mrp_bom_form_action"
+              sequence="10"/>
 
     <menuitem id="menu_dsc_material_test_config_parent"
               name="配置"

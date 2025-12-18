@@ -4,7 +4,7 @@
     'version': '1.0',
     'category': 'Manufacturing',
     # ... 其他欄位 ...
-    'depends': ['base', 'product', 'mail', 'hr'],
+    'depends': ['base', 'product', 'mail', 'hr', 'mrp'],
     'data': [
         'security/security.xml',
         'security/ir.model.access.csv',

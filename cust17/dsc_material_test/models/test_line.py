@@ -11,6 +11,18 @@ class UnifiedTestLine(models.Model):
     sequence = fields.Integer(string='Sequence', default=10)
 
     test_item_id = fields.Many2one('dsc.material.test.item', string='測試項目', required=True)
+    is_hardness = fields.Boolean(string="是否為硬度", compute='_compute_is_hardness')
+
+    @api.depends('test_item_id')
+    def _compute_is_hardness(self):
+        for line in self:
+            name = line.test_item_id.name or ''
+
+            if '硬度' in name:
+                line.is_hardness = True
+            else:
+                line.is_hardness = False
+
     method = fields.Many2one('dsc.material.test.config', string='Method 方法')
     unit = fields.Many2one('uom.uom', string='單位')
     spec = fields.Char(string='規格標準')
