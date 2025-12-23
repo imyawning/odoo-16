@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields, api
 
+
+# === 1. 新增這個類別：用來儲存報告專用的物料清單明細 ===
 class MaterialTestReportBomLine(models.Model):
     _name = 'dsc.material.test.report.bom.line'
     _description = 'Material Test Report BoM Line'
@@ -9,6 +11,7 @@ class MaterialTestReportBomLine(models.Model):
     product_id = fields.Many2one('product.product', string='組件', required=True)
     product_qty = fields.Float(string='數量', default=1.0)
     product_uom_id = fields.Many2one('uom.uom', string='產品量度單位')
+
 
 class MaterialTestReport(models.Model):
     _name = 'dsc.material.test.report'
@@ -45,13 +48,14 @@ class MaterialTestReport(models.Model):
 
     test_line_ids = fields.One2many('dsc.material.test.unified', 'report_id', string='測試細項')
 
-    # === 物料清單相關欄位 ===
+    # === 2. 新增物料清單相關欄位 ===
+    # 用來記錄來源 BoM (唯讀顯示用)
     bom_id = fields.Many2one('mrp.bom', string='物料清單', compute='_compute_bom_id', store=True)
-    
-    # 可編輯的物料清單明細 (One2many)
+
+    # 用來儲存複製過來的 BoM 明細 (One2many)
     report_bom_line_ids = fields.One2many('dsc.material.test.report.bom.line', 'report_id', string='物料清單明細')
 
-    # === 修正重點：必須包含這個計算函式 ===
+    # === 3. 加入計算 BoM 的函式 ===
     @api.depends('product_id')
     def _compute_bom_id(self):
         for report in self:
@@ -67,27 +71,27 @@ class MaterialTestReport(models.Model):
                 ], limit=1, order='sequence, id')
             report.bom_id = bom
 
+    # === 4. 修改 onchange：加入帶入 BoM 資料的邏輯 ===
     @api.onchange('product_id')
     def _onchange_product_id(self):
         self.template_id = False
         # 清空舊的明細
         self.report_bom_line_ids = [(5, 0, 0)]
-        
+
         if not self.product_id:
             return
 
-        # 1. 處理樣板
+        # --- 處理樣板 (原有邏輯) ---
         product_categ = self.product_id.categ_id
         if product_categ:
             template = self.env['dsc.material.test.template'].search([
                 ('product_categ_id', '=', product_categ.id)
             ], limit=1)
-
             if template:
                 self.template_id = template.id
 
-        # 2. 處理物料清單 (自動帶入資料到可編輯區塊)
-        # 重新搜尋一次 BoM
+        # --- 處理物料清單 (新增邏輯) ---
+        # 重新搜尋一次 BoM，因為 compute 可能還沒觸發
         bom = self.env['mrp.bom'].search([
             '|',
             ('product_id', '=', self.product_id.id),

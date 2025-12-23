@@ -9,10 +9,17 @@
               parent="menu_material_test_root"
               action="action_material_test_report"
               sequence="10"/>
+
     <menuitem id="menu_material_test_product_cat"
               name="產品"
               parent="menu_material_test_root"
               sequence="50"/>
+
+    <menuitem id="menu_material_test_product_action"
+              name="產品"
+              parent="menu_material_test_product_cat"
+              action="product.product_template_action"
+              sequence="5"/>
 
     <menuitem id="menu_material_test_bom_action"
               name="物料清單"
